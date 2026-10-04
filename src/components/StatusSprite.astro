@@ -1,13 +1,46 @@
 ---
-/** The three status shapes (circle = running, square = unknown, cross = out of order). Rendered once per page. */
+/**
+ * The three status shapes, matching the apps' symbols (`ElevatorStatus.symbolName`): a filled circle
+ * with a check, a filled square with a question mark, and a cross. The glyphs are cut out with masks,
+ * so the ground shows through and the shapes stay single-colour. Rendered once per page.
+ */
 ---
 
-<svg width="0" height="0" style="position: absolute" aria-hidden="true" focusable="false">
+<svg width="0" height="0" class="sprite" aria-hidden="true" focusable="false">
   <defs>
-    <symbol id="s-ok" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8"></circle></symbol>
-    <symbol id="s-unk" viewBox="0 0 20 20"><rect x="3" y="3" width="14" height="14" rx="2"></rect></symbol>
+    <mask id="m-ok" maskUnits="userSpaceOnUse" x="0" y="0" width="20" height="20">
+      <circle cx="10" cy="10" r="8" fill="#fff"></circle>
+      <path
+        d="M6.4 10.4l2.5 2.5 4.9-5.2"
+        fill="none"
+        stroke="#000"
+        stroke-width="2.2"
+        stroke-linecap="round"
+        stroke-linejoin="round"></path>
+    </mask>
+    <mask id="m-unk" maskUnits="userSpaceOnUse" x="0" y="0" width="20" height="20">
+      <rect x="3" y="3" width="14" height="14" rx="2" fill="#fff"></rect>
+      <path
+        d="M7.6 8.1a2.5 2.5 0 1 1 3.6 2.3c-.8.4-1.2.9-1.2 1.7v.3"
+        fill="none"
+        stroke="#000"
+        stroke-width="1.9"
+        stroke-linecap="round"
+        stroke-linejoin="round"></path>
+      <circle cx="10" cy="14.9" r="1.15" fill="#000"></circle>
+    </mask>
+    <symbol id="s-ok" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" mask="url(#m-ok)"></circle></symbol>
+    <symbol id="s-unk" viewBox="0 0 20 20">
+      <rect x="3" y="3" width="14" height="14" rx="2" mask="url(#m-unk)"></rect>
+    </symbol>
     <symbol id="s-down" viewBox="0 0 20 20">
       <path d="M4 4l12 12M16 4 4 16" stroke-width="3.6" stroke-linecap="round"></path>
     </symbol>
   </defs>
 </svg>
+
+<style>
+  .sprite {
+    position: absolute;
+  }
+</style>
