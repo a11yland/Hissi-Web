@@ -2,7 +2,7 @@
 /** The support page body: issue trackers, mail, tester CTA, privacy and data source in one paper floor. */
 import StoreButtons from './StoreButtons.astro';
 import { contact } from '../config';
-import { paths, type Locale, t } from '../i18n';
+import { href, paths, type Locale, t } from '../i18n';
 
 interface Props {
   locale: Locale;
@@ -38,7 +38,7 @@ const s = t(locale).support;
       <section class="card" aria-labelledby="sup-privacy">
         <h2 id="sup-privacy">{s.privacy.h2}</h2>
         <p>{s.privacy.text}</p>
-        <p><a href={paths.privacy[locale]}>{s.privacy.link}</a></p>
+        <p><a href={href(paths.privacy[locale])}>{s.privacy.link}</a></p>
       </section>
       <section class="card" aria-labelledby="sup-source">
         <h2 id="sup-source">{s.source.h2}</h2>

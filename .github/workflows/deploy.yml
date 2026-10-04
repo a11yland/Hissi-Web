@@ -15,6 +15,9 @@ permissions:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    env:
+      # the upload is skipped until the bunny.net secrets exist
+      HAS_BUNNY: ${{ secrets.BUNNY_STORAGE_ZONE != '' }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -25,6 +28,7 @@ jobs:
       - run: npx astro check
       - run: npm run build
       - run: node scripts/deploy-bunny.mjs
+        if: env.HAS_BUNNY == 'true'
         env:
           BUNNY_STORAGE_ZONE: ${{ secrets.BUNNY_STORAGE_ZONE }}
           BUNNY_STORAGE_PASSWORD: ${{ secrets.BUNNY_STORAGE_PASSWORD }}

@@ -47,7 +47,7 @@ This website sets no cookies and embeds no third-party services; it serves its f
 
 ## Your rights
 
-Since we store no personal data, there is nothing for us to disclose, correct or delete. You delete your favorites and settings in the app yourself, and your iCloud data through your device's iCloud settings. For questions, use the address above or [support](/en/support/).
+Since we store no personal data, there is nothing for us to disclose, correct or delete. You delete your favorites and settings in the app yourself, and your iCloud data through your device's iCloud settings. For questions, use the address above or [support](../support/).
 
 ## Changes
 

@@ -3,7 +3,7 @@
 import Lockup from './brand/Lockup.astro';
 import StoreButtons from './StoreButtons.astro';
 import { contact } from '../config';
-import { paths, type Locale, type PageKey, t } from '../i18n';
+import { href, paths, type Locale, type PageKey, t } from '../i18n';
 
 interface Props {
   locale: Locale;
@@ -29,9 +29,9 @@ const s = t(locale);
       </div>
       <nav aria-label={s.nav.legalNav}>
         <ul>
-          <li><a href={paths.support[locale]} aria-current={pageKey === 'support' ? 'page' : undefined}>{s.roof.links.support}</a></li>
-          <li><a href={paths.privacy[locale]} aria-current={pageKey === 'privacy' ? 'page' : undefined}>{s.roof.links.privacy}</a></li>
-          <li><a href={paths.legal[locale]} aria-current={pageKey === 'legal' ? 'page' : undefined}>{s.roof.links.legal}</a></li>
+          <li><a href={href(paths.support[locale])} aria-current={pageKey === 'support' ? 'page' : undefined}>{s.roof.links.support}</a></li>
+          <li><a href={href(paths.privacy[locale])} aria-current={pageKey === 'privacy' ? 'page' : undefined}>{s.roof.links.privacy}</a></li>
+          <li><a href={href(paths.legal[locale])} aria-current={pageKey === 'legal' ? 'page' : undefined}>{s.roof.links.legal}</a></li>
           <li><a href={contact.github}>{s.roof.links.github}</a></li>
         </ul>
       </nav>

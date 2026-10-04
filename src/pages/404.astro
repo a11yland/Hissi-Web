@@ -1,7 +1,7 @@
 ---
 /** One 404 page for the whole site (the CDN knows only one), so it speaks both languages. */
 import Base from '../layouts/Base.astro';
-import { de, en, paths } from '../i18n';
+import { de, en, href, paths } from '../i18n';
 ---
 
 <Base locale="de" title={`${de.notFound.title} – Hissi`} description={de.notFound.h1} noindex>
@@ -10,10 +10,10 @@ import { de, en, paths } from '../i18n';
     <div class="wrap">
       <p class="tag"><b>?</b> {de.notFound.tag}</p>
       <h1 id="nf-de">{de.notFound.h1}</h1>
-      <p class="intro">{de.notFound.text} <a href={paths.home.de}>{de.notFound.home}</a></p>
+      <p class="intro">{de.notFound.text} <a href={href(paths.home.de)}>{de.notFound.home}</a></p>
       <div class="en" lang="en">
         <h2>{en.notFound.h1}</h2>
-        <p class="intro">{en.notFound.text} <a href={paths.home.en}>{en.notFound.home}</a></p>
+        <p class="intro">{en.notFound.text} <a href={href(paths.home.en)}>{en.notFound.home}</a></p>
       </div>
     </div>
   </section>

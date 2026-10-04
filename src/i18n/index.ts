@@ -17,3 +17,9 @@ export function t(value: string | undefined): Strings {
 export { de, en };
 export type { Strings };
 export * from './routes';
+
+/** Prefixes a site-absolute path with the configured base (only differs from '/' on a preview deployment). */
+export function href(path: string): string {
+  const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+  return base ? `${base}${path}` : path;
+}

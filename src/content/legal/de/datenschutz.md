@@ -47,7 +47,7 @@ Diese Website setzt keine Cookies und bindet keine Dienste Dritter ein; Schrifte
 
 ## Deine Rechte
 
-Da wir keine personenbezogenen Daten speichern, gibt es bei uns nichts zu beauskunften, zu berichtigen oder zu löschen. Deine Favoriten und Einstellungen löschst du selbst in der App, deine iCloud-Daten über die iCloud-Einstellungen deines Geräts. Bei Fragen erreichst du uns unter der oben genannten Adresse oder über den [Support](/support/).
+Da wir keine personenbezogenen Daten speichern, gibt es bei uns nichts zu beauskunften, zu berichtigen oder zu löschen. Deine Favoriten und Einstellungen löschst du selbst in der App, deine iCloud-Daten über die iCloud-Einstellungen deines Geräts. Bei Fragen erreichst du uns unter der oben genannten Adresse oder über den [Support](../support/).
 
 ## Änderungen
 

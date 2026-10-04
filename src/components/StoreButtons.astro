@@ -4,7 +4,7 @@
  * store URL → official badge, testing URL → "test now" link, nothing → "soon" box plus a mail line.
  */
 import { contact, stage, storeHref, type Platform } from '../config';
-import { type Locale, t } from '../i18n';
+import { href, type Locale, t } from '../i18n';
 
 interface Props {
   locale: Locale;
@@ -22,20 +22,20 @@ const mailto = `mailto:${contact.email}?subject=${encodeURIComponent(s.mail.subj
     {
       platforms.map((p) => {
         const st = stage(p);
-        const href = storeHref(p);
-        if (st === 'store' && href) {
+        const link = storeHref(p);
+        if (st === 'store' && link) {
           return (
             <li>
-              <a class="badge" href={href}>
-                <img src={`/badges/${p}-${locale}.svg`} alt={s.badgeAlt[p]} width="180" height="54" loading="lazy" />
+              <a class="badge" href={link}>
+                <img src={href(`/badges/${p}-${locale}.svg`)} alt={s.badgeAlt[p]} width="180" height="54" loading="lazy" />
               </a>
             </li>
           );
         }
-        if (st === 'testing' && href) {
+        if (st === 'testing' && link) {
           return (
             <li>
-              <a class="store" href={href}>
+              <a class="store" href={link}>
                 <small>{s.testing[p].small}</small>
                 <strong>{s.testing[p].strong}</strong>
               </a>

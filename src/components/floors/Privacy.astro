@@ -1,7 +1,7 @@
 ---
 import Floor from '../Floor.astro';
 import { contact } from '../../config';
-import { paths, type Locale, t } from '../../i18n';
+import { href, paths, type Locale, t } from '../../i18n';
 
 interface Props {
   locale: Locale;
@@ -23,7 +23,7 @@ const s = t(locale).privacy;
     </p>
     <p class="small">
       {s.maps}
-      <a class="more" href={paths.privacy[locale]}>{s.more}</a>
+      <a class="more" href={href(paths.privacy[locale])}>{s.more}</a>
     </p>
   </div>
 </Floor>

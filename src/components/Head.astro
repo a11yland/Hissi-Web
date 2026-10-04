@@ -1,6 +1,6 @@
 ---
 import { release } from '../config';
-import { abs, locales, type Locale, type PageKey, t } from '../i18n';
+import { abs, href, locales, type Locale, type PageKey, t } from '../i18n';
 
 interface Props {
   locale: Locale;
@@ -14,7 +14,7 @@ interface Props {
 const { locale, pageKey, title, description, noindex = false } = Astro.props;
 const s = t(locale);
 const canonical = pageKey ? abs(pageKey, locale) : undefined;
-const ogImage = new URL('/og.png', Astro.site).href;
+const ogImage = new URL(href('/og.png'), Astro.site).href;
 const ogLocale = locale === 'de' ? 'de_DE' : 'en_GB';
 ---
 
@@ -25,7 +25,7 @@ const ogLocale = locale === 'de' ? 'de_DE' : 'en_GB';
 {canonical && <link rel="canonical" href={canonical} />}
 {pageKey && locales.map((l) => <link rel="alternate" hreflang={l} href={abs(pageKey, l)} />)}
 {pageKey && <link rel="alternate" hreflang="x-default" href={abs(pageKey, 'de')} />}
-{noindex && <meta name="robots" content="noindex" />}
+{(noindex || import.meta.env.SITE_NOINDEX === 'true') && <meta name="robots" content="noindex" />}
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#FBF3E4" />
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1A1520" />
 <meta property="og:type" content="website" />
@@ -39,7 +39,7 @@ const ogLocale = locale === 'de' ? 'de_DE' : 'en_GB';
 <meta property="og:image:alt" content={s.meta.ogAlt} />
 <meta property="og:locale" content={ogLocale} />
 <meta name="twitter:card" content="summary_large_image" />
-<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-<link rel="sitemap" href="/sitemap-index.xml" />
+<link rel="icon" href={href('/favicon.svg')} type="image/svg+xml" />
+<link rel="apple-touch-icon" href={href('/apple-touch-icon.png')} />
+<link rel="sitemap" href={href('/sitemap-index.xml')} />
 {release.ios.appStoreID && <meta name="apple-itunes-app" content={`app-id=${release.ios.appStoreID}`} />}

@@ -3,7 +3,9 @@ import sitemap from '@astrojs/sitemap';
 import { abs, locales, pageFor, SITE } from './src/i18n/routes';
 
 export default defineConfig({
-  site: SITE,
+  // A preview deployment (GitHub Pages) overrides both; links go through href() in src/i18n.
+  site: process.env.ASTRO_SITE ?? SITE,
+  base: process.env.ASTRO_BASE ?? '/',
   output: 'static',
   trailingSlash: 'always',
   build: { format: 'directory' },

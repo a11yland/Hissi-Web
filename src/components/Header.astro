@@ -2,7 +2,7 @@
 import Lockup from './brand/Lockup.astro';
 import FloorDisplay from './FloorDisplay.astro';
 import LangSwitch from './LangSwitch.astro';
-import { paths, type Locale, type PageKey, t } from '../i18n';
+import { href, paths, type Locale, type PageKey, t } from '../i18n';
 
 interface Props {
   locale: Locale;
@@ -16,7 +16,7 @@ const isHome = pageKey === 'home';
 
 <header class="top">
   <div class="wrap">
-    <a class="brand" href={isHome ? '#inhalt' : paths.home[locale]} aria-label={s.nav.brand}>
+    <a class="brand" href={isHome ? '#inhalt' : href(paths.home[locale])} aria-label={s.nav.brand}>
       <Lockup class="lockup mk" animated />
     </a>
     <div class="tools">

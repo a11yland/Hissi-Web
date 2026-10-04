@@ -1,6 +1,6 @@
 ---
 /** One link to the same page in the other language; label and accessible name are in the target language. */
-import { other, paths, type Locale, type PageKey, t } from '../i18n';
+import { href, other, paths, type Locale, type PageKey, t } from '../i18n';
 
 interface Props {
   locale: Locale;
@@ -12,7 +12,7 @@ const target = other(locale);
 const s = t(locale);
 ---
 
-<a class="lang" href={paths[pageKey][target]} hreflang={target} lang={target} aria-label={s.nav.switchLabel}>
+<a class="lang" href={href(paths[pageKey][target])} hreflang={target} lang={target} aria-label={s.nav.switchLabel}>
   {s.nav.switchText}
 </a>
 

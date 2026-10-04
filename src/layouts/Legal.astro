@@ -2,7 +2,7 @@
 /** A legal page: one paper floor with the rendered Markdown of a `legal` collection entry. */
 import { getEntry, render } from 'astro:content';
 import Base from './Base.astro';
-import { paths, type Locale, type PageKey, t } from '../i18n';
+import { href, paths, type Locale, type PageKey, t } from '../i18n';
 import '../styles/prose.css';
 
 interface Props {
@@ -39,8 +39,8 @@ const linkText: Record<PageKey, string> = {
       <nav class="card see-also" aria-label={s.legal.seeAlso}>
         <p class="use">{s.legal.seeAlso}</p>
         <ul>
-          {siblings.map((key) => <li><a href={paths[key][locale]}>{linkText[key]}</a></li>)}
-          <li><a href={paths.home[locale]}>{s.legal.home}</a></li>
+          {siblings.map((key) => <li><a href={href(paths[key][locale])}>{linkText[key]}</a></li>)}
+          <li><a href={href(paths.home[locale])}>{s.legal.home}</a></li>
         </ul>
       </nav>
     </div>
