@@ -11,7 +11,7 @@ const en: Strings = {
   nav: {
     skip: 'Skip to content',
     brand: 'Hissi, back to the top',
-    switchText: 'Deutsch',
+    switchText: 'DE',
     switchLabel: 'Auf Deutsch wechseln',
     legalNav: 'Legal and help',
     test: 'Test now',

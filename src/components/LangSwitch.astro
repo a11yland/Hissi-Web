@@ -1,5 +1,8 @@
 ---
-/** One link to the same page in the other language; label and accessible name are in the target language. */
+/**
+ * One link to the same page in the other language: a small flag plus the language code, both in the
+ * target language. The accessible name spells the language out.
+ */
 import { href, other, paths, type Locale, type PageKey, t } from '../i18n';
 
 interface Props {
@@ -12,24 +15,31 @@ const target = other(locale);
 const s = t(locale);
 ---
 
-<a class="lang" href={href(paths[pageKey][target])} hreflang={target} lang={target} aria-label={s.nav.switchLabel}>
-  {s.nav.switchText}
+<a
+  class="pill"
+  href={href(paths[pageKey][target])}
+  hreflang={target}
+  lang={target}
+  aria-label={`${s.nav.switchText}: ${s.nav.switchLabel}`}>
+  {
+    target === 'de' ? (
+      <svg class="flag" viewBox="0 0 5 3" aria-hidden="true" focusable="false">
+        <rect width="5" height="1" fill="#000" />
+        <rect y="1" width="5" height="1" fill="#D00" />
+        <rect y="2" width="5" height="1" fill="#FFCE00" />
+      </svg>
+    ) : (
+      <svg class="flag" viewBox="0 0 60 36" aria-hidden="true" focusable="false">
+        <clipPath id="flag-gb">
+          <path d="M30 18h30v18zv18H0zH0V0zV0h30z" />
+        </clipPath>
+        <path d="M0 0v36h60V0z" fill="#012169" />
+        <path d="M0 0l60 36m0-36L0 36" stroke="#fff" stroke-width="6" />
+        <path d="M0 0l60 36m0-36L0 36" clip-path="url(#flag-gb)" stroke="#C8102E" stroke-width="4" />
+        <path d="M30 0v36M0 18h60" stroke="#fff" stroke-width="10" />
+        <path d="M30 0v36M0 18h60" stroke="#C8102E" stroke-width="6" />
+      </svg>
+    )
+  }
+  <span>{s.nav.switchText}</span>
 </a>
-
-<style>
-  .lang {
-    display: inline-flex;
-    align-items: center;
-    min-height: 2.75rem;
-    padding-inline: 0.7rem;
-    border: 2px solid currentColor;
-    border-radius: 0.5rem;
-    font-family: var(--font-mono);
-    font-size: var(--step--1);
-    font-weight: 700;
-    text-decoration: none;
-  }
-  .lang:hover {
-    border-color: var(--fg);
-  }
-</style>

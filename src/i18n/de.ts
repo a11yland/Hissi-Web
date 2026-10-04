@@ -45,7 +45,7 @@ const de = {
     skip: 'Zum Inhalt springen',
     brand: 'Hissi, zum Anfang',
     /** Shown on this language's pages, in the *other* language. */
-    switchText: 'English',
+    switchText: 'EN',
     switchLabel: 'Switch to English',
     legalNav: 'Rechtliches und Hilfe',
     /** Header call to action while a platform is in testing; links to the roof. */
