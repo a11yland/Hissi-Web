@@ -182,6 +182,13 @@ const de = {
       } satisfies Record<Platform, string>,
       /** Shown while a platform has no public link yet. */
       mail: { text: 'Du willst vorab testen? ', link: 'Schreib mir eine Mail', subject: 'Hissi testen' },
+      /** Google only lets listed accounts into a closed test, so the address has to come first. */
+      androidGate: {
+        text: 'Für den Android-Test brauche ich vorher die Google-Mail-Adresse, mit der du bei Google Play angemeldet bist: ',
+        link: 'Adresse schicken',
+        subject: 'Hissi für Android testen',
+        body: 'Hallo, bitte schalte mich für den Android-Test frei. Meine Google-Play-Adresse: ',
+      },
     },
     copyright: '© 2026 a11yland. Gebaut für alle, die nicht die Treppe nehmen können.',
     links: { support: 'Support', privacy: 'Datenschutz', legal: 'Impressum', github: 'GitHub' },

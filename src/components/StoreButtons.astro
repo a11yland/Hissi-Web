@@ -14,7 +14,9 @@ const { locale } = Astro.props;
 const s = t(locale).roof.stores;
 const platforms: Platform[] = ['ios', 'android'];
 const anySoon = platforms.some((p) => stage(p) === 'soon');
+const androidGate = stage('android') === 'testing';
 const mailto = `mailto:${contact.email}?subject=${encodeURIComponent(s.mail.subject)}`;
+const gateMailto = `mailto:${contact.email}?subject=${encodeURIComponent(s.androidGate.subject)}&body=${encodeURIComponent(s.androidGate.body)}`;
 ---
 
 <div class="avail">
@@ -53,6 +55,14 @@ const mailto = `mailto:${contact.email}?subject=${encodeURIComponent(s.mail.subj
       })
     }
   </ul>
+  {
+    androidGate && (
+      <p class="mail">
+        {s.androidGate.text}
+        <a href={gateMailto}>{s.androidGate.link}</a>.
+      </p>
+    )
+  }
   {
     anySoon && (
       <p class="mail">

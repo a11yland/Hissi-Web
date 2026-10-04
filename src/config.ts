@@ -6,14 +6,14 @@ export type Stage = 'store' | 'testing' | 'soon';
 export const release = {
   ios: {
     /** TestFlight public link, e.g. 'https://testflight.apple.com/join/XXXXXXXX' */
-    testflightURL: undefined as string | undefined,
+    testflightURL: 'https://testflight.apple.com/join/JzqZMpsJ' as string | undefined,
     appStoreURL: undefined as string | undefined,
     /** Numeric App Store id; enables the Smart App Banner. */
     appStoreID: undefined as string | undefined,
   },
   android: {
     /** Play closed-testing opt-in link, e.g. 'https://play.google.com/apps/testing/com.a11yland.Hissi' */
-    playTestingURL: undefined as string | undefined,
+    playTestingURL: 'https://play.google.com/apps/testing/com.a11yland.Hissi' as string | undefined,
     playStoreURL: undefined as string | undefined,
   },
 };

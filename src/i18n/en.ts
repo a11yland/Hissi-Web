@@ -140,6 +140,12 @@ const en: Strings = {
         android: 'Get it on Google Play',
       },
       mail: { text: 'Want to test before release? ', link: 'Send me an e-mail', subject: 'Testing Hissi' },
+      androidGate: {
+        text: 'For the Android test I first need the Google account e-mail you use with Google Play: ',
+        link: 'send your address',
+        subject: 'Testing Hissi for Android',
+        body: 'Hi, please add me to the Android test. My Google Play address: ',
+      },
     },
     copyright: '© 2026 a11yland. Built for everyone who cannot take the stairs.',
     links: { support: 'Support', privacy: 'Privacy', legal: 'Legal notice', github: 'GitHub' },
