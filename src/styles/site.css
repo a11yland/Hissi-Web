@@ -3,13 +3,13 @@
    change their specificity. */
 /* Kopf mit Etagenanzeige */
 .top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); border-bottom: 1px solid var(--line); }
-.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: .6rem; }
+.top .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .6rem 1rem; padding-block: .6rem; }
 .brand { display: inline-flex; align-items: center; min-height: 2.75rem; gap: .55rem; color: var(--fg); text-decoration: none; }
 .brand .lockup { height: 2rem; width: auto; }
 .top .pill { display: inline-flex; align-items: center; gap: .5rem; min-height: 2.75rem; padding-inline: .7rem; border: 2px solid currentColor; border-radius: .5rem; font-family: var(--font-mono); font-size: var(--step--1); font-weight: 700; text-decoration: none; }
 .top .pill:hover { background: color-mix(in srgb, currentColor 8%, transparent); }
 .top .flag { width: 1.25rem; height: auto; border-radius: 2px; outline: 1px solid var(--line); }
-.floor-display { display: inline-flex; align-items: center; gap: .5rem; background: var(--display); color: var(--display-fg); font-family: var(--font-mono); font-weight: 700; padding: .35rem .75rem; border-radius: .5rem; min-width: 6.5rem; justify-content: center; letter-spacing: .08em; font-size: .95rem; text-shadow: 0 0 8px rgb(63 224 197 / .5); }
+.floor-display { display: inline-flex; align-items: center; gap: .5rem; background: var(--display); color: var(--display-fg); font-family: var(--font-mono); font-weight: 700; min-height: 2.75rem; padding: 0 .375rem; border-radius: .5rem; justify-content: center; letter-spacing: .08em; font-size: .95rem; text-shadow: 0 0 8px rgb(63 224 197 / .5); }
 .floor-display .dir { width: .8rem; height: .8rem; fill: currentColor; transition: transform .3s; }
 .floor-display[data-dir="down"] .dir { transform: rotate(180deg); }
 

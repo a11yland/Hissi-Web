@@ -23,8 +23,8 @@ const roof = isHome ? '#dach' : `${href(paths.home[locale])}#dach`;
     </a>
     <div class="tools">
       {recruiting() && <a class="pill" href={roof}>{s.nav.test}</a>}
-      {isHome && <FloorDisplay initial={s.eg.num} />}
       {pageKey && <LangSwitch locale={locale} pageKey={pageKey} />}
+      {isHome && <FloorDisplay initial={s.eg.num} />}
     </div>
   </div>
 </header>
@@ -34,11 +34,6 @@ const roof = isHome ? '#dach' : `${href(paths.home[locale])}#dach`;
     display: flex;
     align-items: center;
     gap: 0.75rem;
-  }
-  /* The floor counter is decorative; on narrow screens the call to action takes its room. */
-  @media (max-width: 40rem) {
-    .tools :global(.floor-display) {
-      display: none;
-    }
+    margin-left: auto;
   }
 </style>
