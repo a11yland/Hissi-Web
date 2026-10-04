@@ -123,11 +123,26 @@ const first = s.examples[0]!;
       /* storage unavailable: the default stands for this visit */
     }
     const renderSound = () => soundButton.setAttribute('aria-pressed', String(soundOn));
-    const ding = () => {
+    // iOS only lets a page create and resume an AudioContext inside a user gesture, and the chime
+    // plays 950 ms after the tap, from a timer. So the context is set up synchronously in the click
+    // handlers (prime) and ding() only schedules on it. A silent buffer played in the gesture is the
+    // classic iOS unlock; it is harmless elsewhere.
+    const prime = () => {
       if (!soundOn) return;
       try {
         audio ??= new AudioContext();
         if (audio.state === 'suspended') void audio.resume();
+        const silence = audio.createBufferSource();
+        silence.buffer = audio.createBuffer(1, 1, audio.sampleRate);
+        silence.connect(audio.destination);
+        silence.start();
+      } catch {
+        /* no Web Audio: the ride stays silent */
+      }
+    };
+    const ding = () => {
+      if (!soundOn || !audio) return;
+      try {
         const t = audio.currentTime;
         const partials: Array<[frequency: number, gain: number, seconds: number]> = [
           [1046.5, 0.4, 1.4],
@@ -159,7 +174,8 @@ const first = s.examples[0]!;
       } catch {
         /* preference not remembered */
       }
-      if (soundOn) ding();
+      prime();
+      ding();
     });
 
     // The buttons only do something with JS, so they only appear with JS.
@@ -168,6 +184,7 @@ const first = s.examples[0]!;
     button.addEventListener('click', () => {
       if (busy) return;
       busy = true;
+      prime();
       button.setAttribute('aria-busy', 'true');
       const wait = reduce.matches ? 0 : 950;
       shaft.dataset.open = 'false';
