@@ -14,6 +14,7 @@ const en: Strings = {
     switchText: 'Deutsch',
     switchLabel: 'Auf Deutsch wechseln',
     legalNav: 'Legal and help',
+    test: 'Test now',
   },
   platforms: { ios: 'iOS', android: 'Android' },
   platformsLabel: 'Available on',

@@ -48,6 +48,8 @@ const de = {
     switchText: 'English',
     switchLabel: 'Switch to English',
     legalNav: 'Rechtliches und Hilfe',
+    /** Header call to action while a platform is in testing; links to the roof. */
+    test: 'Jetzt testen',
   },
   platforms: { ios: 'iOS', android: 'Android' } satisfies Record<Platform, string>,
   platformsLabel: 'Verfügbar auf',
