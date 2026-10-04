@@ -1,0 +1,45 @@
+---
+import Floor from '../Floor.astro';
+import Lift from '../Lift.astro';
+import { recruiting } from '../../config';
+import { type Locale, t } from '../../i18n';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const s = t(locale).eg;
+---
+
+<Floor id="eg" num={s.num} class="hero" labelledby="eg-title" bigNum={false}>
+  <div class="hero-copy">
+    <p class="tag"><b>{s.num}</b> {s.tag}</p>
+    <h1 id="eg-title">
+      {s.h1.lead}<span class="strike">{s.h1.strike}</span>{s.h1.mid}<span class="hl">{s.h1.hl}</span>
+    </h1>
+    <p class="intro">{s.intro}</p>
+    <ul class="chips" aria-label={s.chipsLabel}>
+      {s.chips.map((chip) => <li class="chip">{chip}</li>)}
+    </ul>
+    {
+      recruiting() && (
+        <p class="tester">
+          {s.tester.text}<a href="#dach">{s.tester.link}</a>.
+        </p>
+      )
+    }
+  </div>
+  <Lift locale={locale} />
+</Floor>
+
+<style>
+  .chips {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .tester {
+    font-weight: 700;
+  }
+</style>

@@ -1,0 +1,25 @@
+{
+  "name": "hissi-web",
+  "private": true,
+  "type": "module",
+  "version": "0.1.0",
+  "description": "Landing page for the Hissi app (iOS + Android) at https://hissi.app",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "assets": "scripts/import-assets.sh",
+    "deploy": "node scripts/deploy-bunny.mjs"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.10",
+    "@astrojs/sitemap": "^3.7.4",
+    "astro": "^7.3.5",
+    "typescript": "^6.0.3"
+  }
+}

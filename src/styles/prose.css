@@ -1,0 +1,28 @@
+/* Rendered Markdown on the legal pages. Global because the content is rendered by a child component. */
+.prose {
+  max-width: 44rem;
+  margin-top: clamp(2rem, 5vw, 3rem);
+}
+.prose h2 {
+  font-size: var(--step-1);
+  letter-spacing: -0.01em;
+  margin-top: clamp(2rem, 5vw, 3rem);
+}
+.prose p,
+.prose ul,
+.prose ol {
+  margin-top: 1rem;
+}
+.prose ul,
+.prose ol {
+  padding-left: 1.4em;
+}
+.prose li + li {
+  margin-top: 0.35rem;
+}
+.prose strong {
+  font-weight: 700;
+}
+.prose a {
+  font-weight: 700;
+}

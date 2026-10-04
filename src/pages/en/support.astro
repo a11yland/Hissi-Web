@@ -1,0 +1,9 @@
+---
+import Support from '../../components/Support.astro';
+import Base from '../../layouts/Base.astro';
+import { en } from '../../i18n';
+---
+
+<Base pageKey="support" title={`${en.support.title} – Hissi`} description={en.support.description}>
+  <Support locale="en" />
+</Base>

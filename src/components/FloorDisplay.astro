@@ -1,0 +1,46 @@
+---
+/** The LED floor indicator in the header: shows the floor (section) currently in view. Decorative; JS-enhanced. */
+interface Props {
+  initial: string;
+}
+
+const { initial } = Astro.props;
+---
+
+<p class="floor-display" id="floor-display" aria-hidden="true" data-dir="up">
+  <svg class="dir" viewBox="0 0 10 10"><path d="M5 1 9.5 8h-9z"></path></svg>
+  <span id="floor-label">{initial}</span>
+</p>
+
+<script>
+  (() => {
+    const label = document.getElementById('floor-label');
+    const display = document.getElementById('floor-display');
+    if (!label || !display) return;
+    const floors = [...document.querySelectorAll<HTMLElement>('[data-floor]')];
+    if (floors.length === 0) return;
+    let lastY = scrollY;
+    let queued = false;
+    const update = () => {
+      queued = false;
+      const y = scrollY;
+      display.dataset.dir = y < lastY ? 'down' : 'up';
+      lastY = y;
+      let current = floors[0]!;
+      for (const floor of floors) {
+        if (floor.getBoundingClientRect().top < innerHeight * 0.4) current = floor;
+      }
+      label.textContent = current.dataset.floor ?? '';
+    };
+    addEventListener(
+      'scroll',
+      () => {
+        if (queued) return;
+        queued = true;
+        requestAnimationFrame(update);
+      },
+      { passive: true },
+    );
+    update();
+  })();
+</script>

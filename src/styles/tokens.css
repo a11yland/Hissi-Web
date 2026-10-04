@@ -1,0 +1,53 @@
+/* Design tokens of the Hissi website ("Creme und Lila"), ported verbatim from the design template.
+   Only the three font stacks differ: system fonts instead of the web fonts (Atkinson Hyperlegible Next, Sora, Atkinson Hyperlegible Mono). */
+:root {
+  --bg: #FBF3E4;          /* Creme */
+  --fg: #221A2C;
+  --muted: #5A4E66;
+  --lila: #503C74;
+  --on-lila: #FBF3E4;
+  --soft: #EBDCFF;        /* Zartlila */
+  --on-soft: #3F2D5E;
+  --paper: #FFFBF4;
+  --line: #E3D6C0;
+  --accent: #69548D;
+  --ok: #006B5C;  --ok-mark: #00806E;
+  --unk: #8A4B08; --unk-mark: #8A4B08; /* was #D97706, 2.9:1 on cream */
+  --down: #B4123A; --down-mark: #E11D48;
+  --ping: #00806E;        /* Pfeile und Ping, auf Creme */
+  --ping-on-lila: #3FE0C5;
+  --steel: #EDE3D2; --steel-2: #CFC0A8;
+  --display: #2A2233; --display-fg: #3FE0C5; /* Etagenanzeige, grüne LED */
+  --focus: #69548D;
+
+  --font-display: "Avenir Next", "Segoe UI", system-ui, -apple-system, Roboto, sans-serif;
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+
+  --step--1: clamp(.875rem, .85rem + .1vw, .95rem);
+  --step-0: clamp(1.0625rem, 1rem + .3vw, 1.25rem);
+  --step-1: clamp(1.3rem, 1.15rem + .6vw, 1.7rem);
+  --step-2: clamp(1.9rem, 1.4rem + 2vw, 3.2rem);
+  --step-3: clamp(2.8rem, 1.6rem + 5.5vw, 6.5rem);
+  --gutter: clamp(1rem, 4vw, 2.5rem);
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #1A1520; --fg: #F3EBDD; --muted: #CFC3D6;
+    --lila: #3A2D52; --on-lila: #FBF3E4; --soft: #2E2440; --on-soft: #FBF3E4;
+    --paper: #2A2233; --line: #3F3450; --accent: #D4BBFC;
+    --ok: #6EE7B7; --ok-mark: #3FE0C5; --unk: #FCD34D; --unk-mark: #FBBF24; --down: #FDA4AF; --down-mark: #FB7185;
+    --ping: #3FE0C5; --steel: #3A3244; --steel-2: #4A4056; --display: #0F0B14; --focus: #D4BBFC;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #1A1520; --fg: #F3EBDD; --muted: #CFC3D6;
+  --lila: #3A2D52; --on-lila: #FBF3E4; --soft: #2E2440; --on-soft: #FBF3E4;
+  --paper: #2A2233; --line: #3F3450; --accent: #D4BBFC;
+  --ok: #6EE7B7; --ok-mark: #3FE0C5; --unk: #FCD34D; --unk-mark: #FBBF24; --down: #FDA4AF; --down-mark: #FB7185;
+  --ping: #3FE0C5; --steel: #3A3244; --steel-2: #4A4056; --display: #0F0B14; --focus: #D4BBFC;
+  color-scheme: dark;
+}
+

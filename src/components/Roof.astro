@@ -1,0 +1,48 @@
+---
+/** The footer: the roof of the elevator ride. */
+import Lockup from './brand/Lockup.astro';
+import StoreButtons from './StoreButtons.astro';
+import { contact } from '../config';
+import { paths, type Locale, type PageKey, t } from '../i18n';
+
+interface Props {
+  locale: Locale;
+  pageKey?: PageKey;
+}
+
+const { locale, pageKey } = Astro.props;
+const s = t(locale);
+---
+
+<footer class="roof" id="dach" data-floor={s.roof.num}>
+  <div class="wrap">
+    <div>
+      <p class="tag"><b>{s.roof.num}</b> {s.roof.tag}</p>
+      <h2>{s.roof.h2}</h2>
+      <p class="audience">{s.roof.audience}</p>
+    </div>
+    <StoreButtons locale={locale} />
+    <div class="roof-foot">
+      <div>
+        <Lockup class="wm" label="Hissi" />
+        <small>{s.roof.copyright}</small>
+      </div>
+      <nav aria-label={s.nav.legalNav}>
+        <ul>
+          <li><a href={paths.support[locale]} aria-current={pageKey === 'support' ? 'page' : undefined}>{s.roof.links.support}</a></li>
+          <li><a href={paths.privacy[locale]} aria-current={pageKey === 'privacy' ? 'page' : undefined}>{s.roof.links.privacy}</a></li>
+          <li><a href={paths.legal[locale]} aria-current={pageKey === 'legal' ? 'page' : undefined}>{s.roof.links.legal}</a></li>
+          <li><a href={contact.github}>{s.roof.links.github}</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .audience {
+    margin-top: 1.25rem;
+    max-width: 40rem;
+    opacity: 0.9;
+  }
+</style>

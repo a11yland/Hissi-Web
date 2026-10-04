@@ -1,1 +1,42 @@
 # Hissi-Web
+
+Landing page for the Hissi app (iOS + Android) at [hissi.app](https://hissi.app): the elevator ride from the design template, ported to [Astro](https://astro.build) as a static site in German and English, plus privacy policy, legal notice and support pages.
+
+## Build
+
+```bash
+npm ci
+npm run check     # astro check: types; the EN strings are typed against DE, so a missing key fails here
+npm run build     # → dist/
+npm run preview   # http://localhost:4321
+```
+
+Node ≥ 22.12 (`.nvmrc`). No linter; `astro check` is the gate.
+
+## Layout
+
+- `src/i18n/` — every string of the site. `de.ts` is the source (the template copy, verbatim), `en.ts` is typed as `typeof de`, `routes.ts` is the route table (translated slugs: `/datenschutz/` ↔ `/en/privacy/`, `/impressum/` ↔ `/en/legal-notice/`) that feeds links, the language switch, hreflang and the sitemap.
+- `src/config.ts` — release toggles. Set `testflightURL` / `playTestingURL` for a "test now" button, `appStoreURL` / `playStoreURL` for the official badge (SVGs go to `public/badges/<platform>-<locale>.svg`), `appStoreID` for the Smart App Banner. Nothing set → "soon" box plus a mail line.
+- `src/styles/` — `tokens.css` is the template's token block (system font stacks instead of the web fonts; the light-mode unknown mark was darkened from `#D97706` to `#8A4B08`, 2.9:1 → 6.2:1 on cream), `base.css` / `site.css` the rest of the template CSS, kept global because rules cross component boundaries.
+- `src/components/` — one component per floor (`floors/`), the hero's `Lift` with its script (door starts open, so the page works without JS), the header's `FloorDisplay`, `Lockup` (inline SVG, `currentColor` + `var(--ping)`), `StoreButtons`, `Screens`.
+- `src/content/legal/` — privacy policy and legal notice as Markdown per language (`src/content.config.ts`). The privacy policy here is the canonical one; the app repos should link to it.
+- `src/pages/` — eight pages, explicit per locale, plus one bilingual `404.astro` (the CDN serves a single 404 page).
+
+Typography uses system font stacks (the template's fallback stacks); no web fonts are loaded.
+
+## Assets
+
+Brand SVGs and screenshots are snapshots copied from the sibling repos:
+
+```bash
+npm run assets             # scripts/import-assets.sh — IOS_REPO, ANDROID_REPO, ART_REPO overridable
+node scripts/make-og.mjs   # public/og.png (1200×630) and apple-touch-icon.png
+```
+
+Re-run when a motif changes. `strip-c2pa.mjs` removes the C2PA metadata block from the SVGs.
+
+## Deploy
+
+Push to `main` runs `.github/workflows/deploy.yml`: check, build, then `scripts/deploy-bunny.mjs` uploads `dist/` to the bunny.net Storage Zone (checksum-skip, assets before HTML, stale files deleted) and purges the Pull Zone. Secrets: `BUNNY_STORAGE_ZONE`, `BUNNY_STORAGE_PASSWORD`, `BUNNY_STORAGE_ENDPOINT`, `BUNNY_API_KEY`, `BUNNY_PULLZONE_ID`.
+
+Pull zone configuration (manual, once): hostnames `hissi.app` + `www.hissi.app` with SSL, Force SSL; edge rules for `*/index.html*` → 301 to the directory, `www` → 301 to the apex, `*/_astro/*` cached for a year (`Cache-Control: public, max-age=31536000, immutable`), HTML with a short browser cache; language detection on the start page only: Request URL exactly `https://hissi.app/` **and** header `Accept-Language` begins with `en` → 302 to `/en/` (never on subpages, so shared links and crawlers stay put; the header switch covers the rest); storage zone 404 page `/404.html` with "Rewrite 404 to 200" **off**. DNS on Bunny DNS (apex as pull-zone record, `www` CNAME, CAA for Let's Encrypt). Pages are built as `directory/index.html` with trailing slashes; verify on the first deploy that `/datenschutz/` resolves.

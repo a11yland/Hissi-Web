@@ -1,0 +1,9 @@
+---
+import Landing from '../components/Landing.astro';
+import Base from '../layouts/Base.astro';
+import { de } from '../i18n';
+---
+
+<Base pageKey="home" title={de.meta.title} description={de.meta.description}>
+  <Landing locale="de" />
+</Base>

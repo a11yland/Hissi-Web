@@ -1,0 +1,45 @@
+---
+import { release } from '../config';
+import { abs, locales, type Locale, type PageKey, t } from '../i18n';
+
+interface Props {
+  locale: Locale;
+  /** Pages in the route table get canonical + hreflang; the 404 page has none. */
+  pageKey?: PageKey;
+  title: string;
+  description: string;
+  noindex?: boolean;
+}
+
+const { locale, pageKey, title, description, noindex = false } = Astro.props;
+const s = t(locale);
+const canonical = pageKey ? abs(pageKey, locale) : undefined;
+const ogImage = new URL('/og.png', Astro.site).href;
+const ogLocale = locale === 'de' ? 'de_DE' : 'en_GB';
+---
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>{title}</title>
+<meta name="description" content={description} />
+{canonical && <link rel="canonical" href={canonical} />}
+{pageKey && locales.map((l) => <link rel="alternate" hreflang={l} href={abs(pageKey, l)} />)}
+{pageKey && <link rel="alternate" hreflang="x-default" href={abs(pageKey, 'de')} />}
+{noindex && <meta name="robots" content="noindex" />}
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#FBF3E4" />
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1A1520" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Hissi" />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+{canonical && <meta property="og:url" content={canonical} />}
+<meta property="og:image" content={ogImage} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content={s.meta.ogAlt} />
+<meta property="og:locale" content={ogLocale} />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="sitemap" href="/sitemap-index.xml" />
+{release.ios.appStoreID && <meta name="apple-itunes-app" content={`app-id=${release.ios.appStoreID}`} />}

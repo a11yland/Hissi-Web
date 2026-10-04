@@ -1,0 +1,40 @@
+---
+import '../styles/tokens.css';
+import '../styles/base.css';
+import '../styles/site.css';
+import Head from '../components/Head.astro';
+import Header from '../components/Header.astro';
+import Roof from '../components/Roof.astro';
+import StatusSprite from '../components/StatusSprite.astro';
+import { localeOf, type Locale, type PageKey, t } from '../i18n';
+
+interface Props {
+  /** Page in the route table; omitted only for the 404 page. */
+  pageKey?: PageKey;
+  /** Overrides the locale derived from the URL (the 404 page is served for every path). */
+  locale?: Locale;
+  title: string;
+  description: string;
+  noindex?: boolean;
+}
+
+const { pageKey, title, description, noindex } = Astro.props;
+const locale = Astro.props.locale ?? localeOf(Astro.currentLocale);
+const s = t(locale);
+---
+
+<!doctype html>
+<html lang={locale}>
+  <head>
+    <Head locale={locale} pageKey={pageKey} title={title} description={description} noindex={noindex} />
+  </head>
+  <body>
+    <StatusSprite />
+    <a class="skip" href="#inhalt">{s.nav.skip}</a>
+    <Header locale={locale} pageKey={pageKey} />
+    <main id="inhalt" tabindex="-1">
+      <slot />
+    </main>
+    <Roof locale={locale} pageKey={pageKey} />
+  </body>
+</html>

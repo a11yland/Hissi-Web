@@ -1,0 +1,39 @@
+---
+/** Which platforms a feature exists on. Text labels, not icons or colour. */
+import type { Platform } from '../config';
+import { type Locale, t } from '../i18n';
+
+interface Props {
+  locale: Locale;
+  platforms: Platform[];
+}
+
+const { locale, platforms } = Astro.props;
+const s = t(locale);
+---
+
+<ul class="plat" aria-label={s.platformsLabel}>
+  {platforms.map((p) => <li>{s.platforms[p]}</li>)}
+</ul>
+
+<style>
+  .plat {
+    list-style: none;
+    margin: 0.5rem 0 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .plat li {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.15rem 0.5rem;
+    border: 1.5px solid currentColor;
+    border-radius: 0.4rem;
+    color: var(--muted);
+  }
+</style>

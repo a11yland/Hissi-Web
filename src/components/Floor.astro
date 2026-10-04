@@ -1,0 +1,23 @@
+---
+/** A floor of the ride: one section with its number, tag line and ground colour. */
+interface Props {
+  id: string;
+  num: string;
+  /** Tag line next to the number; the hero renders its own inside the copy column. */
+  tag?: string;
+  ground?: 'is-lila' | 'is-soft' | 'is-paper';
+  class?: string;
+  labelledby: string;
+  bigNum?: boolean;
+}
+
+const { id, num, tag, ground, class: className, labelledby, bigNum = true } = Astro.props;
+---
+
+<section class:list={['floor', ground, className]} id={id} data-floor={num} aria-labelledby={labelledby}>
+  {bigNum && <span class="big-num" aria-hidden="true">{num}</span>}
+  <div class="wrap">
+    {tag && <p class="tag"><b>{num}</b> {tag}</p>}
+    <slot />
+  </div>
+</section>

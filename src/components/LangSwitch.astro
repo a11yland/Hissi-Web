@@ -1,0 +1,35 @@
+---
+/** One link to the same page in the other language; label and accessible name are in the target language. */
+import { other, paths, type Locale, type PageKey, t } from '../i18n';
+
+interface Props {
+  locale: Locale;
+  pageKey: PageKey;
+}
+
+const { locale, pageKey } = Astro.props;
+const target = other(locale);
+const s = t(locale);
+---
+
+<a class="lang" href={paths[pageKey][target]} hreflang={target} lang={target} aria-label={s.nav.switchLabel}>
+  {s.nav.switchText}
+</a>
+
+<style>
+  .lang {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    padding-inline: 0.7rem;
+    border: 2px solid currentColor;
+    border-radius: 0.5rem;
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    font-weight: 700;
+    text-decoration: none;
+  }
+  .lang:hover {
+    border-color: var(--fg);
+  }
+</style>

@@ -1,0 +1,21 @@
+---
+/** The landing page: five floors, bottom to top. The roof (footer) comes from the layout. */
+import Everywhere from './floors/Everywhere.astro';
+import Finnish from './floors/Finnish.astro';
+import Forms from './floors/Forms.astro';
+import HeroEG from './floors/HeroEG.astro';
+import Privacy from './floors/Privacy.astro';
+import type { Locale } from '../i18n';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+---
+
+<HeroEG locale={locale} />
+<Forms locale={locale} />
+<Everywhere locale={locale} />
+<Privacy locale={locale} />
+<Finnish locale={locale} />

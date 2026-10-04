@@ -1,0 +1,45 @@
+---
+/**
+ * The "hissi" lockup (door mark + wordmark) as inline SVG, so it takes `currentColor` and `var(--ping)`
+ * from the ground it sits on. Decorative unless a `label` is given.
+ */
+import { chevronsPath, doorPath, lockupViewBox, wordPath } from './lockup-paths';
+
+interface Props {
+  class?: string;
+  /** Accessible name; without it the lockup is hidden from assistive tech. */
+  label?: string;
+  /** Marks the outer ping ring so the header animation can target it. */
+  animated?: boolean;
+}
+
+const { class: className, label, animated = false } = Astro.props;
+---
+
+<svg
+  class={className}
+  viewBox={lockupViewBox}
+  focusable="false"
+  role={label ? "img" : undefined}
+  aria-label={label}
+  aria-hidden={label ? undefined : "true"}>
+  <path d={doorPath} fill="none" stroke="currentColor" stroke-width="150"></path>
+  <path
+    d={chevronsPath}
+    style="stroke: var(--ping)"
+    stroke-width="52"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    fill="none"></path>
+  <circle
+    class:list={{ ring: animated }}
+    cx="572.5"
+    cy="-560"
+    r="118"
+    fill="none"
+    style="stroke: var(--ping)"
+    stroke-opacity=".4"
+    stroke-width="26"></circle>
+  <circle cx="572.5" cy="-560" r="78" style="fill: var(--ping)"></circle>
+  <path transform="translate(110 0)" fill="currentColor" d={wordPath}></path>
+</svg>

@@ -1,0 +1,219 @@
+---
+/**
+ * The hero's elevator: a cabin showing an example status behind two door leaves, and a call button that
+ * cycles through the examples. Works without JS (the door starts open, the first example is readable);
+ * the script adds the close-and-reopen ride, a chime when the doors open, and announces each stop once.
+ */
+import Shape from './Shape.astro';
+import { type Locale, t } from '../i18n';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const s = t(locale).eg.lift;
+const first = s.examples[0]!;
+---
+
+<figure
+  class="lift"
+  id="lift"
+  aria-labelledby="lift-cap"
+  data-examples={JSON.stringify(s.examples)}
+  data-announce={s.announce}
+  data-call-again={s.callAgain}>
+  <div class="shaft" id="shaft" data-open="true">
+    <div class="cabin" id="cabin">
+      <Shape status={first.status} />
+      <p class="cabin-state">{first.state}</p>
+      <p class="cabin-where">{first.where}</p>
+      <p class="cabin-when">{first.when}</p>
+    </div>
+    <div class="leaf l"></div>
+    <div class="leaf r"></div>
+    <span class="ding" aria-hidden="true">Ding!</span>
+  </div>
+  <div class="controls" id="controls" hidden>
+    <button class="call" id="call" type="button">
+      <span class="btn">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path
+            d="M6 10l6-6 6 6M6 14l6 6 6-6"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.6"
+            stroke-linecap="round"
+            stroke-linejoin="round"></path>
+        </svg>
+      </span>
+      <span class="call-label">{s.call}</span>
+    </button>
+    <button class="call sound" id="sound" type="button" aria-pressed="true">
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor"></path>
+        <path
+          class="wave"
+          d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"></path>
+        <path
+          class="mute"
+          d="M16 9l6 6M22 9l-6 6"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.2"
+          stroke-linecap="round"></path>
+      </svg>
+      <span>{s.sound}</span>
+    </button>
+  </div>
+  <p class="sr" id="announce" aria-live="polite"></p>
+  <figcaption id="lift-cap">{s.caption}</figcaption>
+</figure>
+
+<script>
+  (() => {
+    const root = document.getElementById('lift');
+    const shaft = document.getElementById('shaft');
+    const controls = document.getElementById('controls');
+    const button = document.getElementById('call');
+    const soundButton = document.getElementById('sound');
+    const live = document.getElementById('announce');
+    if (!root || !shaft || !controls || !button || !soundButton || !live) return;
+
+    type Example = { status: 'ok' | 'unk' | 'down'; state: string; where: string; when: string };
+    const examples = JSON.parse(root.dataset.examples ?? '[]') as Example[];
+    const announce = root.dataset.announce ?? '';
+    const callAgain = root.dataset.callAgain ?? '';
+    const label = button.querySelector('.call-label');
+    const shape = root.querySelector('.cabin .shape');
+    const use = shape?.querySelector('use');
+    const state = root.querySelector('.cabin-state');
+    const where = root.querySelector('.cabin-where');
+    const when = root.querySelector('.cabin-when');
+    if (examples.length < 2 || !label || !shape || !use || !state || !where || !when) return;
+
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)');
+    let index = 0;
+    let busy = false;
+
+    const show = (example: Example) => {
+      shape.setAttribute('class', `shape ${example.status}`);
+      use.setAttribute('href', `#s-${example.status}`);
+      state.textContent = example.state;
+      where.textContent = example.where;
+      when.textContent = example.when;
+    };
+
+    // The elevator chime, synthesised with the Web Audio API (no audio file): a bell at C6 with two
+    // overtones, each decaying on its own. The context is created on the first click, which is the
+    // user gesture browsers require before playing anything.
+    // Default: on, unless the system asks for reduced motion (the closest signal the web has for
+    // "keep it calm"). A choice made with the toggle wins over the default either way.
+    const SOUND_KEY = 'hissi-lift-sound';
+    let audio: AudioContext | undefined;
+    let soundOn = !reduce.matches;
+    try {
+      const stored = localStorage.getItem(SOUND_KEY);
+      if (stored === 'on' || stored === 'off') soundOn = stored === 'on';
+    } catch {
+      /* storage unavailable: the default stands for this visit */
+    }
+    const renderSound = () => soundButton.setAttribute('aria-pressed', String(soundOn));
+    const ding = () => {
+      if (!soundOn) return;
+      try {
+        audio ??= new AudioContext();
+        if (audio.state === 'suspended') void audio.resume();
+        const t = audio.currentTime;
+        const partials: Array<[frequency: number, gain: number, seconds: number]> = [
+          [1046.5, 0.4, 1.4],
+          [2093, 0.12, 0.9],
+          [3135.9, 0.05, 0.5],
+        ];
+        for (const [frequency, gain, seconds] of partials) {
+          const oscillator = audio.createOscillator();
+          const envelope = audio.createGain();
+          oscillator.type = 'sine';
+          oscillator.frequency.value = frequency;
+          envelope.gain.setValueAtTime(0, t);
+          envelope.gain.linearRampToValueAtTime(gain, t + 0.004);
+          envelope.gain.exponentialRampToValueAtTime(0.0001, t + seconds);
+          oscillator.connect(envelope).connect(audio.destination);
+          oscillator.start(t);
+          oscillator.stop(t + seconds);
+        }
+      } catch {
+        /* no Web Audio: the ride stays silent */
+      }
+    };
+    renderSound();
+    soundButton.addEventListener('click', () => {
+      soundOn = !soundOn;
+      renderSound();
+      try {
+        localStorage.setItem(SOUND_KEY, soundOn ? 'on' : 'off');
+      } catch {
+        /* preference not remembered */
+      }
+      if (soundOn) ding();
+    });
+
+    // The buttons only do something with JS, so they only appear with JS.
+    controls.hidden = false;
+
+    button.addEventListener('click', () => {
+      if (busy) return;
+      busy = true;
+      button.setAttribute('aria-busy', 'true');
+      const wait = reduce.matches ? 0 : 950;
+      shaft.dataset.open = 'false';
+      setTimeout(() => {
+        index = (index + 1) % examples.length;
+        const example = examples[index]!;
+        show(example);
+        shaft.dataset.open = 'true';
+        shaft.dataset.rode = 'true';
+        ding();
+        live.textContent = announce
+          .replace('{where}', example.where)
+          .replace('{state}', example.state)
+          .replace('{when}', example.when);
+        setTimeout(() => {
+          busy = false;
+          button.removeAttribute('aria-busy');
+          label.textContent = callAgain;
+        }, wait);
+      }, wait);
+    });
+  })();
+</script>
+
+<style>
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+  .sound {
+    padding-inline: 0.9rem;
+    gap: 0.5rem;
+  }
+  .sound svg {
+    width: 1.4rem;
+    height: 1.4rem;
+  }
+  .sound .mute {
+    display: none;
+  }
+  .sound[aria-pressed='false'] .wave {
+    display: none;
+  }
+  .sound[aria-pressed='false'] .mute {
+    display: block;
+  }
+</style>

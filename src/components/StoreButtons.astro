@@ -1,0 +1,90 @@
+---
+/**
+ * Availability per platform, driven by the release toggles in src/config.ts:
+ * store URL → official badge, testing URL → "test now" link, nothing → "soon" box plus a mail line.
+ */
+import { contact, stage, storeHref, type Platform } from '../config';
+import { type Locale, t } from '../i18n';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const s = t(locale).roof.stores;
+const platforms: Platform[] = ['ios', 'android'];
+const anySoon = platforms.some((p) => stage(p) === 'soon');
+const mailto = `mailto:${contact.email}?subject=${encodeURIComponent(s.mail.subject)}`;
+---
+
+<div class="avail">
+  <ul class="stores" aria-label={t(locale).roof.storesLabel}>
+    {
+      platforms.map((p) => {
+        const st = stage(p);
+        const href = storeHref(p);
+        if (st === 'store' && href) {
+          return (
+            <li>
+              <a class="badge" href={href}>
+                <img src={`/badges/${p}-${locale}.svg`} alt={s.badgeAlt[p]} width="180" height="54" loading="lazy" />
+              </a>
+            </li>
+          );
+        }
+        if (st === 'testing' && href) {
+          return (
+            <li>
+              <a class="store" href={href}>
+                <small>{s.testing[p].small}</small>
+                <strong>{s.testing[p].strong}</strong>
+              </a>
+            </li>
+          );
+        }
+        return (
+          <li>
+            <span class="store">
+              <small>{s.soon[p].small}</small>
+              <strong>{s.soon[p].strong}</strong>
+            </span>
+          </li>
+        );
+      })
+    }
+  </ul>
+  {
+    anySoon && (
+      <p class="mail">
+        {s.mail.text}
+        <a href={mailto}>{s.mail.link}</a>.
+      </p>
+    )
+  }
+</div>
+
+<style>
+  .avail {
+    display: grid;
+    gap: 1rem;
+  }
+  .stores {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  a.store {
+    text-decoration: none;
+  }
+  a.store:hover {
+    background: rgb(255 255 255 / 0.1);
+  }
+  .badge img {
+    display: block;
+    height: 3.4rem;
+    width: auto;
+  }
+  .mail a {
+    font-weight: 700;
+  }
+</style>

@@ -1,0 +1,30 @@
+---
+import Floor from '../Floor.astro';
+import Shape from '../Shape.astro';
+import { type Locale, t } from '../../i18n';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const s = t(locale).finnish;
+---
+
+<Floor id="finnisch" num={s.num} tag={s.tag} ground="is-paper" labelledby="f4-title">
+  <h2 id="f4-title">{s.h2}</h2>
+  <p class="pron"><span lang="fi">{s.pron.word}</span> {s.pron.ipa}.{s.pron.text}</p>
+  <div class="lesson">
+    {
+      s.cards.map((card) => (
+        <div class="card">
+          <p class="fi" lang="fi">{card.fi}</p>
+          <p class="de">{card.gloss}</p>
+          <p class="use">
+            <Shape status={card.status} /> {card.use}
+          </p>
+        </div>
+      ))
+    }
+  </div>
+</Floor>

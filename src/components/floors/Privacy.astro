@@ -1,0 +1,39 @@
+---
+import Floor from '../Floor.astro';
+import { contact } from '../../config';
+import { paths, type Locale, t } from '../../i18n';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const s = t(locale).privacy;
+---
+
+<Floor id="datenschutz" num={s.num} tag={s.tag} ground="is-soft" labelledby="f3-title">
+  <h2 id="f3-title">{s.h2}</h2>
+  <div class="nothing">
+    <p class="a">{s.answer}</p>
+    <ul aria-label={s.chipsLabel}>
+      {s.chips.map((chip) => <li>{chip}</li>)}
+    </ul>
+    <p class="small">
+      {s.note.lead}<a href={contact.accessibilityCloud}>{s.note.link}</a>{s.note.tail}
+    </p>
+    <p class="small">
+      {s.maps}
+      <a class="more" href={paths.privacy[locale]}>{s.more}</a>
+    </p>
+  </div>
+</Floor>
+
+<style>
+  .more {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    margin-top: 0.25rem;
+    font-weight: 700;
+  }
+</style>

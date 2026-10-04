@@ -1,0 +1,72 @@
+---
+/** A legal page: one paper floor with the rendered Markdown of a `legal` collection entry. */
+import { getEntry, render } from 'astro:content';
+import Base from './Base.astro';
+import { paths, type Locale, type PageKey, t } from '../i18n';
+import '../styles/prose.css';
+
+interface Props {
+  locale: Locale;
+  /** Entry id in the `legal` collection, e.g. 'de/datenschutz'. */
+  entry: string;
+}
+
+const { locale, entry: entryId } = Astro.props;
+const entry = await getEntry('legal', entryId);
+if (!entry) throw new Error(`legal entry not found: ${entryId}`);
+const { Content } = await render(entry);
+const { title, description, tagline, pageKey, updated } = entry.data;
+const s = t(locale);
+const updatedText = new Intl.DateTimeFormat(locale, { dateStyle: 'long' }).format(updated);
+const siblings = (['support', 'privacy', 'legal'] as PageKey[]).filter((key) => key !== pageKey);
+const linkText: Record<PageKey, string> = {
+  home: s.legal.home,
+  support: s.roof.links.support,
+  privacy: s.roof.links.privacy,
+  legal: s.roof.links.legal,
+};
+---
+
+<Base pageKey={pageKey} locale={locale} title={`${title} – Hissi`} description={description}>
+  <section class="floor is-paper" aria-labelledby="page-title">
+    <div class="wrap">
+      {tagline && <p class="tag">{tagline}</p>}
+      <h1 id="page-title">{title}</h1>
+      <p class="pron"><time datetime={updated.toISOString().slice(0, 10)}>{s.legal.updated}: {updatedText}</time></p>
+      <div class="prose">
+        <Content />
+      </div>
+      <nav class="card see-also" aria-label={s.legal.seeAlso}>
+        <p class="use">{s.legal.seeAlso}</p>
+        <ul>
+          {siblings.map((key) => <li><a href={paths[key][locale]}>{linkText[key]}</a></li>)}
+          <li><a href={paths.home[locale]}>{s.legal.home}</a></li>
+        </ul>
+      </nav>
+    </div>
+  </section>
+</Base>
+
+<style>
+  h1 {
+    font-size: var(--step-2);
+  }
+  .see-also {
+    margin-top: clamp(2.5rem, 6vw, 4rem);
+    max-width: 44rem;
+  }
+  .see-also ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.5rem;
+  }
+  .see-also a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    font-weight: 700;
+  }
+</style>

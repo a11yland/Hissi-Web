@@ -1,0 +1,90 @@
+---
+/**
+ * App screenshots in CSS frames built from the elevator's steel tokens. The sources are snapshots copied
+ * from the app repos by scripts/import-assets.sh and show the German interface.
+ */
+import { Picture } from 'astro:assets';
+import androidFavorites from '../assets/screens/android-favorites.png';
+import iosFavorites from '../assets/screens/ios-favorites.jpg';
+import iosNearby from '../assets/screens/ios-nearby.jpg';
+import iosSearch from '../assets/screens/ios-search.jpg';
+import watchList from '../assets/screens/watch-list.jpg';
+import { type Locale, t } from '../i18n';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const s = t(locale).everywhere.screens;
+const phones = [
+  { src: iosFavorites, alt: s.favorites },
+  { src: iosSearch, alt: s.search },
+  { src: iosNearby, alt: s.nearby },
+  { src: androidFavorites, alt: s.android },
+];
+---
+
+<ul class="screens" aria-label={s.label}>
+  {
+    phones.map((p) => (
+      <li class="screen phone">
+        <Picture
+          src={p.src}
+          alt={p.alt}
+          formats={['avif', 'webp']}
+          fallbackFormat="webp"
+          widths={[280, 420, 560]}
+          sizes="(min-width: 60rem) 12rem, 42vw"
+          loading="lazy"
+          decoding="async"
+        />
+      </li>
+    ))
+  }
+  <li class="screen watch">
+    <Picture
+      src={watchList}
+      alt={s.watch}
+      formats={['avif', 'webp']}
+          fallbackFormat="webp"
+      widths={[208, 416]}
+      sizes="10rem"
+      loading="lazy"
+      decoding="async"
+    />
+  </li>
+</ul>
+
+<style>
+  .screens {
+    list-style: none;
+    margin: clamp(2rem, 5vw, 3.5rem) 0 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: end;
+    justify-content: center;
+    gap: 1.25rem;
+  }
+  .screen {
+    overflow: hidden;
+    background: var(--paper);
+    border: 0.5rem solid var(--steel-2);
+    box-shadow: 0 24px 50px -24px rgb(0 47 108 / 0.45);
+  }
+  .phone {
+    width: min(42vw, 12rem);
+    border-radius: 1.75rem;
+  }
+  .watch {
+    width: 10rem;
+    border-width: 0.6rem;
+    border-radius: 2.25rem;
+  }
+  .screen :global(img) {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+</style>

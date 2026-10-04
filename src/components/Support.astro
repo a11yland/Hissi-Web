@@ -1,0 +1,80 @@
+---
+/** The support page body: issue trackers, mail, tester CTA, privacy and data source in one paper floor. */
+import StoreButtons from './StoreButtons.astro';
+import { contact } from '../config';
+import { paths, type Locale, t } from '../i18n';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const s = t(locale).support;
+---
+
+<section class="floor is-paper" aria-labelledby="page-title">
+  <div class="wrap">
+    <p class="tag">{s.tag}</p>
+    <h1 id="page-title">{s.h1}</h1>
+    <div class="sections">
+      <section class="card" aria-labelledby="sup-issues">
+        <h2 id="sup-issues">{s.issues.h2}</h2>
+        <p>{s.issues.text}</p>
+        <ul>
+          <li><a href={contact.issuesIOS}>{s.issues.ios}</a></li>
+          <li><a href={contact.issuesAndroid}>{s.issues.android}</a></li>
+        </ul>
+      </section>
+      <section class="card" aria-labelledby="sup-mail">
+        <h2 id="sup-mail">{s.mail.h2}</h2>
+        <p>{s.mail.text}</p>
+        <p><a href={`mailto:${contact.email}`}>{contact.email}</a></p>
+      </section>
+      <section class="card is-lila" aria-labelledby="sup-tester">
+        <h2 id="sup-tester">{s.tester.h2}</h2>
+        <p>{s.tester.text}</p>
+        <StoreButtons locale={locale} />
+      </section>
+      <section class="card" aria-labelledby="sup-privacy">
+        <h2 id="sup-privacy">{s.privacy.h2}</h2>
+        <p>{s.privacy.text}</p>
+        <p><a href={paths.privacy[locale]}>{s.privacy.link}</a></p>
+      </section>
+      <section class="card" aria-labelledby="sup-source">
+        <h2 id="sup-source">{s.source.h2}</h2>
+        <p>{s.source.text}</p>
+        <p><a href={contact.accessibilityCloud}>accessibility.cloud</a> · <a href={contact.sozialhelden}>Sozialhelden e.V.</a></p>
+      </section>
+    </div>
+  </div>
+</section>
+
+<style>
+  h1 {
+    font-size: var(--step-2);
+  }
+  .sections {
+    margin-top: clamp(2rem, 5vw, 3rem);
+    display: grid;
+    gap: 1rem;
+    max-width: 44rem;
+  }
+  .card h2 {
+    font-size: var(--step-1);
+    letter-spacing: -0.01em;
+  }
+  .card ul {
+    margin: 0;
+    padding-left: 1.4em;
+  }
+  .card a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    font-weight: 700;
+  }
+  .card.is-lila {
+    background: var(--lila);
+    border-color: transparent;
+  }
+</style>

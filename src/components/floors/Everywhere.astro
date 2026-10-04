@@ -1,0 +1,31 @@
+---
+import Floor from '../Floor.astro';
+import PlatformBadges from '../PlatformBadges.astro';
+import Screens from '../Screens.astro';
+import { type Locale, t } from '../../i18n';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const s = t(locale).everywhere;
+---
+
+<Floor id="ueberall" num={s.num} tag={s.tag} labelledby="f2-title">
+  <h2 id="f2-title">{s.h2}</h2>
+  <div class="places">
+    {
+      s.rows.map((row) => (
+        <div class="place">
+          <div>
+            <h3>{row.title}</h3>
+            <PlatformBadges locale={locale} platforms={row.platforms} />
+          </div>
+          <p>{row.text}</p>
+        </div>
+      ))
+    }
+  </div>
+  <Screens locale={locale} />
+</Floor>

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://hissi.app/sitemap-index.xml
