@@ -7,9 +7,9 @@ export const release = {
   ios: {
     /** TestFlight public link, e.g. 'https://testflight.apple.com/join/XXXXXXXX' */
     testflightURL: 'https://testflight.apple.com/join/JzqZMpsJ' as string | undefined,
-    appStoreURL: undefined as string | undefined,
+    appStoreURL: 'https://apps.apple.com/us/app/hissi/id6817517722' as string | undefined,
     /** Numeric App Store id; enables the Smart App Banner. */
-    appStoreID: undefined as string | undefined,
+    appStoreID: '6817517722' as string | undefined,
   },
   android: {
     /** Play closed-testing opt-in link, e.g. 'https://play.google.com/apps/testing/com.a11yland.Hissi' */

@@ -136,6 +136,7 @@ const en: Strings = {
         ios: { small: 'Test now via', strong: 'TestFlight' },
         android: { small: 'Test now on', strong: 'Google Play' },
       },
+      testflight: { text: 'Want the beta? ', link: 'Test on iOS via TestFlight' },
       badgeAlt: {
         ios: 'Download on the App Store',
         android: 'Get it on Google Play',
