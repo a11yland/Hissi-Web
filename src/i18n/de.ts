@@ -178,6 +178,7 @@ const de = {
         ios: { small: 'Jetzt testen per', strong: 'TestFlight' },
         android: { small: 'Jetzt testen bei', strong: 'Google Play' },
       } satisfies Record<Platform, StoreLabel>,
+      testflight: { text: 'Du willst die Beta? ', link: 'Auf iOS per TestFlight testen' },
       badgeAlt: {
         ios: 'Laden im App Store',
         android: 'Jetzt bei Google Play',

@@ -3,7 +3,7 @@
  * Availability per platform, driven by the release toggles in src/config.ts:
  * store URL → official badge, testing URL → "test now" link, nothing → "soon" box plus a mail line.
  */
-import { contact, stage, storeHref, type Platform } from '../config';
+import { contact, release, stage, storeHref, type Platform } from '../config';
 import { href, type Locale, t } from '../i18n';
 
 interface Props {
@@ -15,6 +15,7 @@ const s = t(locale).roof.stores;
 const platforms: Platform[] = ['ios', 'android'];
 const anySoon = platforms.some((p) => stage(p) === 'soon');
 const androidGate = stage('android') === 'testing';
+const iosBeta = stage('ios') === 'store' && release.ios.testflightURL;
 const mailto = `mailto:${contact.email}?subject=${encodeURIComponent(s.mail.subject)}`;
 const gateMailto = `mailto:${contact.email}?subject=${encodeURIComponent(s.androidGate.subject)}&body=${encodeURIComponent(s.androidGate.body)}`;
 ---
@@ -55,6 +56,14 @@ const gateMailto = `mailto:${contact.email}?subject=${encodeURIComponent(s.andro
       })
     }
   </ul>
+  {
+    iosBeta && (
+      <p class="mail">
+        {s.testflight.text}
+        <a href={iosBeta}>{s.testflight.link}</a>
+      </p>
+    )
+  }
   {
     androidGate && (
       <p class="mail">
