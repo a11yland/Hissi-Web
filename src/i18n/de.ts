@@ -99,14 +99,15 @@ const de = {
     tag: 'Überall',
     h2: 'Da, wo du sowieso hinschaust.',
     rows: [
+      // edited: "Komplikationen" and "Live-Aktivität" are Apple terms, explained inline (WCAG 3.1.3)
       {
         title: 'Auf dem Handgelenk',
-        text: 'Apple Watch mit eigener App und Komplikationen. Ein Blick am Bahnsteig, und das Handy bleibt in der Tasche.',
+        text: 'Apple Watch mit eigener App und Komplikationen, den kleinen Anzeigen auf dem Zifferblatt. Ein Blick am Bahnsteig, und das Handy bleibt in der Tasche.',
         platforms: ['ios'],
       },
       {
         title: 'Auf dem Sperr- und Startbildschirm',
-        text: 'Widgets für deine Favoriten, dazu eine Live-Aktivität, wenn du einen bestimmten Aufzug unterwegs im Auge behalten willst. Auf Android melden sich stattdessen Störungsalarme.',
+        text: 'Widgets für deine Favoriten. Dazu eine Live-Aktivität, wenn du einen bestimmten Aufzug unterwegs im Auge behalten willst: Sie liegt auf dem Sperrbildschirm und aktualisiert sich von selbst. Auf Android melden sich stattdessen Störungsalarme.',
         platforms: ['ios', 'android'],
       },
       {

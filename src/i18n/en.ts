@@ -62,12 +62,12 @@ const en: Strings = {
     rows: [
       {
         title: 'On your wrist',
-        text: 'Apple Watch with its own app and complications. One glance on the platform, and the phone stays in your pocket.',
+        text: 'Apple Watch with its own app and complications, the small readouts on the watch face. One glance on the platform, and the phone stays in your pocket.',
         platforms: ['ios'],
       },
       {
         title: 'On the lock and home screen',
-        text: 'Widgets for your favorites, plus a Live Activity when you want to keep an eye on one particular elevator on the go. On Android, disruption alerts speak up instead.',
+        text: 'Widgets for your favorites. Plus a Live Activity when you want to keep an eye on one particular elevator on the go: it sits on the lock screen and updates by itself. On Android, disruption alerts speak up instead.',
         platforms: ['ios', 'android'],
       },
       {

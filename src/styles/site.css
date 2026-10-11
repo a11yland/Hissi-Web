@@ -134,7 +134,9 @@
   .forms li:nth-child(n) { transform: none; }
 }
 @media (forced-colors: active) {
-  .shape.ok, .shape.unk { fill: CanvasText; } .shape.down { stroke: CanvasText; }
+  /* .is-lila repeated so the floor-specific colours above do not win on specificity */
+  .shape.ok, .shape.unk, .is-lila .shape.ok, .is-lila .shape.unk { fill: CanvasText; }
+  .shape.down, .is-lila .shape.down { stroke: CanvasText; }
   .leaf { background: Canvas; border: 1px solid CanvasText; }
-  .floor-display { border: 1px solid CanvasText; }
+  .floor-display, .ding, .nothing li { border: 1px solid CanvasText; }
 }

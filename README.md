@@ -11,7 +11,7 @@ npm run build     # → dist/
 npm run preview   # http://localhost:4321
 ```
 
-Node ≥ 22.12 (`.nvmrc`). No linter; `astro check` is the gate.
+Node ≥ 22.12 (`.nvmrc`). No linter; `astro check` is the gate. `node scripts/readability.mjs` measures the reading level of the built pages (WCAG 3.1.5); the accessibility decisions are in `docs/accessibility.md`.
 
 ## Layout
 
