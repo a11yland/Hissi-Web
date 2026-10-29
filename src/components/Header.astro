@@ -18,26 +18,27 @@ const roof = isHome ? '#dach' : `${href(paths.home[locale])}#dach`;
 
 <header class="top">
   <div class="wrap">
-    <a class="brand" href={isHome ? '#inhalt' : href(paths.home[locale])} aria-label={s.nav.brand}>
-      <Lockup class="lockup mk" animated />
-    </a>
-    <div class="tools">
+    <div class="group">
+      <a class="brand" href={isHome ? '#inhalt' : href(paths.home[locale])} aria-label={s.nav.brand}>
+        <Lockup class="lockup mk" animated />
+      </a>
+      {isHome && <FloorDisplay initial={s.eg.num} />}
+    </div>
+    <div class="group">
+      {pageKey && <LangSwitch locale={locale} pageKey={pageKey} />}
       {available() && (
         <a class="pill" href={roof}>
           {s.nav.get}
         </a>
       )}
-      {pageKey && <LangSwitch locale={locale} pageKey={pageKey} />}
-      {isHome && <FloorDisplay initial={s.eg.num} />}
     </div>
   </div>
 </header>
 
 <style>
-  .tools {
+  .group {
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    margin-left: auto;
   }
 </style>
