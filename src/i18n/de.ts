@@ -48,8 +48,8 @@ const de = {
     switchText: 'EN',
     switchLabel: 'Switch to English',
     legalNav: 'Rechtliches und Hilfe',
-    /** Header call to action while a platform is in testing; links to the roof. */
-    test: 'Jetzt testen',
+    /** Header call to action once a store link exists; links to the roof. */
+    get: 'App laden',
   },
   platforms: { ios: 'iOS', android: 'Android' } satisfies Record<Platform, string>,
   platformsLabel: 'Verfügbar auf',
@@ -62,8 +62,6 @@ const de = {
       'Du stehst am Bahnsteig, mit Rollstuhl, Kinderwagen oder dem Koffer, der sich nach Ziegelsteinen anfühlt. Und da hängt der Zettel: „Außer Betrieb“. Hissi sagt dir das schon zu Hause.',
     chipsLabel: 'Plattformen',
     chips: ['iPhone', 'Apple Watch', 'Android', 'kostenlos'],
-    // added: tester recruitment, rendered only while a platform is in testing
-    tester: { text: 'Beide Apps sind noch im Test. Du kannst sie jetzt ausprobieren: ', link: 'Tester werden' },
     lift: {
       call: 'Aufzug rufen',
       callAgain: 'Nächster Aufzug',
@@ -175,24 +173,12 @@ const de = {
         ios: { small: 'Bald im', strong: 'App Store' },
         android: { small: 'Bald bei', strong: 'Google Play' },
       } satisfies Record<Platform, StoreLabel>,
-      testing: {
-        ios: { small: 'Jetzt testen per', strong: 'TestFlight' },
-        android: { small: 'Jetzt testen bei', strong: 'Google Play' },
-      } satisfies Record<Platform, StoreLabel>,
-      testflight: { text: 'Du willst die Beta? ', link: 'Auf iOS per TestFlight testen' },
       badgeAlt: {
         ios: 'Laden im App Store',
         android: 'Jetzt bei Google Play',
       } satisfies Record<Platform, string>,
       /** Shown while a platform has no public link yet. */
       mail: { text: 'Du willst vorab testen? ', link: 'Schreib mir eine Mail', subject: 'Hissi testen' },
-      /** Google only lets listed accounts into a closed test, so the address has to come first. */
-      androidGate: {
-        text: 'Für den Android-Test brauche ich vorher die Google-Mail-Adresse, mit der du bei Google Play angemeldet bist: ',
-        link: 'Adresse schicken',
-        subject: 'Hissi für Android testen',
-        body: 'Hallo, bitte schalte mich für den Android-Test frei. Meine Google-Play-Adresse: ',
-      },
     },
     copyright: '© 2026 a11yland. Gebaut für alle, die nicht die Treppe nehmen können.',
     links: { support: 'Support', privacy: 'Datenschutz', legal: 'Impressum', github: 'GitHub' },

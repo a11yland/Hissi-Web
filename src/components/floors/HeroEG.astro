@@ -1,7 +1,6 @@
 ---
 import Floor from '../Floor.astro';
 import Lift from '../Lift.astro';
-import { recruiting } from '../../config';
 import { type Locale, t } from '../../i18n';
 
 interface Props {
@@ -22,13 +21,6 @@ const s = t(locale).eg;
     <ul class="chips" aria-label={s.chipsLabel}>
       {s.chips.map((chip) => <li class="chip">{chip}</li>)}
     </ul>
-    {
-      recruiting() && (
-        <p class="tester">
-          {s.tester.text}<a href="#dach">{s.tester.link}</a>.
-        </p>
-      )
-    }
   </div>
   <Lift locale={locale} />
 </Floor>
@@ -38,8 +30,5 @@ const s = t(locale).eg;
     list-style: none;
     margin: 0;
     padding: 0;
-  }
-  .tester {
-    font-weight: 700;
   }
 </style>

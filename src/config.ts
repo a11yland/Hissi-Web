@@ -1,38 +1,30 @@
 /** Release state and contact data. Flip a URL on, commit, push - nothing else changes. */
 
 export type Platform = 'ios' | 'android';
-export type Stage = 'store' | 'testing' | 'soon';
+export type Stage = 'store' | 'soon';
 
 export const release = {
   ios: {
-    /** TestFlight public link, e.g. 'https://testflight.apple.com/join/XXXXXXXX' */
-    testflightURL: undefined as string | undefined,
     appStoreURL: 'https://apps.apple.com/us/app/hissi/id6817517722' as string | undefined,
     /** Numeric App Store id; enables the Smart App Banner. */
     appStoreID: '6817517722' as string | undefined,
   },
   android: {
-    /** Play closed-testing opt-in link, e.g. 'https://play.google.com/apps/testing/com.a11yland.Hissi' */
-    playTestingURL: undefined as string | undefined,
     playStoreURL: 'https://play.google.com/store/apps/details?id=com.a11yland.Hissi' as string | undefined,
   },
 };
 
-export function stage(platform: Platform): Stage {
-  const r = platform === 'ios'
-    ? { store: release.ios.appStoreURL, testing: release.ios.testflightURL }
-    : { store: release.android.playStoreURL, testing: release.android.playTestingURL };
-  return r.store ? 'store' : r.testing ? 'testing' : 'soon';
-}
-
-/** The link a store button points at; undefined while nothing is public yet (→ mailto). */
+/** The store link of a platform; undefined while it is not listed yet. */
 export function storeHref(platform: Platform): string | undefined {
-  return platform === 'ios'
-    ? release.ios.appStoreURL ?? release.ios.testflightURL
-    : release.android.playStoreURL ?? release.android.playTestingURL;
+  return platform === 'ios' ? release.ios.appStoreURL : release.android.playStoreURL;
 }
 
-export const recruiting = (): boolean => stage('ios') === 'testing' || stage('android') === 'testing';
+export function stage(platform: Platform): Stage {
+  return storeHref(platform) ? 'store' : 'soon';
+}
+
+/** At least one platform is in its store. */
+export const available = (): boolean => stage('ios') === 'store' || stage('android') === 'store';
 
 export const contact = {
   email: 'Kobe24LAL@gmx.de',

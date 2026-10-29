@@ -1,10 +1,10 @@
 ---
 /**
  * Availability per platform, driven by the release toggles in src/config.ts:
- * store URL → official badge, testing URL → "test now" link, nothing → "soon" box plus a mail line.
+ * store URL → official badge, nothing → "soon" box plus a mail line.
  * The App Store badge follows the colour scheme: white in light mode, black in dark mode. Google Play ships one colour.
  */
-import { contact, release, stage, storeHref, type Platform } from '../config';
+import { contact, stage, storeHref, type Platform } from '../config';
 import { href, type Locale, t } from '../i18n';
 
 interface Props {
@@ -15,10 +15,7 @@ const { locale } = Astro.props;
 const s = t(locale).roof.stores;
 const platforms: Platform[] = ['ios', 'android'];
 const anySoon = platforms.some((p) => stage(p) === 'soon');
-const androidGate = stage('android') === 'testing';
-const iosBeta = stage('ios') === 'store' && release.ios.testflightURL;
 const mailto = `mailto:${contact.email}?subject=${encodeURIComponent(s.mail.subject)}`;
-const gateMailto = `mailto:${contact.email}?subject=${encodeURIComponent(s.androidGate.subject)}&body=${encodeURIComponent(s.androidGate.body)}`;
 ---
 
 <div class="avail">
@@ -43,16 +40,6 @@ const gateMailto = `mailto:${contact.email}?subject=${encodeURIComponent(s.andro
             </li>
           );
         }
-        if (st === 'testing' && link) {
-          return (
-            <li>
-              <a class="store" href={link}>
-                <small>{s.testing[p].small}</small>
-                <strong>{s.testing[p].strong}</strong>
-              </a>
-            </li>
-          );
-        }
         return (
           <li>
             <span class="store">
@@ -64,22 +51,6 @@ const gateMailto = `mailto:${contact.email}?subject=${encodeURIComponent(s.andro
       })
     }
   </ul>
-  {
-    iosBeta && (
-      <p class="mail">
-        {s.testflight.text}
-        <a href={iosBeta}>{s.testflight.link}</a>
-      </p>
-    )
-  }
-  {
-    androidGate && (
-      <p class="mail">
-        {s.androidGate.text}
-        <a href={gateMailto}>{s.androidGate.link}</a>.
-      </p>
-    )
-  }
   {
     anySoon && (
       <p class="mail">
@@ -102,12 +73,6 @@ const gateMailto = `mailto:${contact.email}?subject=${encodeURIComponent(s.andro
     list-style: none;
     margin: 0;
     padding: 0;
-  }
-  a.store {
-    text-decoration: none;
-  }
-  a.store:hover {
-    background: rgb(255 255 255 / 0.1);
   }
   .badge img {
     display: block;
