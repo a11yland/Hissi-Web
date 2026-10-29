@@ -109,7 +109,6 @@
 .roof { background: var(--lila); color: var(--on-lila); padding-block: clamp(3.5rem, 10vw, 6rem) calc(2.5rem + env(safe-area-inset-bottom, 0px)); overflow: hidden; }
 .roof .wrap { display: grid; gap: 2.5rem; }
 .roof h2 { font-size: var(--step-2); }
-.roof .stores { display: flex; flex-wrap: wrap; gap: .75rem; }
 .store { display: inline-flex; flex-direction: column; padding: .55rem 1.2rem; border-radius: .8rem; border: 2px solid currentColor; line-height: 1.2; }
 .store small { font-size: .78rem; }
 .store strong { font-family: var(--font-display); font-size: 1.05rem; }

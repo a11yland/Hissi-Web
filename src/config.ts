@@ -6,15 +6,15 @@ export type Stage = 'store' | 'testing' | 'soon';
 export const release = {
   ios: {
     /** TestFlight public link, e.g. 'https://testflight.apple.com/join/XXXXXXXX' */
-    testflightURL: 'https://testflight.apple.com/join/JzqZMpsJ' as string | undefined,
+    testflightURL: undefined as string | undefined,
     appStoreURL: 'https://apps.apple.com/us/app/hissi/id6817517722' as string | undefined,
     /** Numeric App Store id; enables the Smart App Banner. */
     appStoreID: '6817517722' as string | undefined,
   },
   android: {
     /** Play closed-testing opt-in link, e.g. 'https://play.google.com/apps/testing/com.a11yland.Hissi' */
-    playTestingURL: 'https://play.google.com/apps/testing/com.a11yland.Hissi' as string | undefined,
-    playStoreURL: undefined as string | undefined,
+    playTestingURL: undefined as string | undefined,
+    playStoreURL: 'https://play.google.com/store/apps/details?id=com.a11yland.Hissi' as string | undefined,
   },
 };
 

@@ -154,7 +154,7 @@ const en: Strings = {
   },
   support: {
     title: 'Support',
-    description: 'Questions, bugs, becoming a tester: how to reach Hissi.',
+    description: 'Questions, bugs, download: how to reach Hissi.',
     tag: 'Help',
     h1: 'Support',
     issues: {
@@ -167,7 +167,7 @@ const en: Strings = {
       h2: 'E-mail',
       text: 'Or directly by e-mail. Hissi is a one-person project; I answer as fast as I can.',
     },
-    tester: { h2: 'Become a tester', text: 'Both apps are still in testing.' },
+    download: { h2: 'Get Hissi', text: 'Hissi is available on the App Store and Google Play.' },
     privacy: {
       h2: 'Privacy',
       text: 'Hissi needs no account and collects no data. Favorites stay on your device; your location never leaves the device.',

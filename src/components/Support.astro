@@ -1,5 +1,5 @@
 ---
-/** The support page body: issue trackers, mail, tester CTA, privacy and data source in one paper floor. */
+/** The support page body: issue trackers, mail, store badges, privacy and data source in one paper floor. */
 import StoreButtons from './StoreButtons.astro';
 import { contact } from '../config';
 import { href, paths, type Locale, t } from '../i18n';
@@ -30,9 +30,9 @@ const s = t(locale).support;
         <p>{s.mail.text}</p>
         <p><a href={`mailto:${contact.email}`}>{contact.email}</a></p>
       </section>
-      <section class="card is-lila" aria-labelledby="sup-tester">
-        <h2 id="sup-tester">{s.tester.h2}</h2>
-        <p>{s.tester.text}</p>
+      <section class="card is-lila" aria-labelledby="sup-download">
+        <h2 id="sup-download">{s.download.h2}</h2>
+        <p>{s.download.text}</p>
         <StoreButtons locale={locale} />
       </section>
       <section class="card" aria-labelledby="sup-privacy">

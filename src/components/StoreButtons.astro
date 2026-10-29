@@ -2,6 +2,7 @@
 /**
  * Availability per platform, driven by the release toggles in src/config.ts:
  * store URL → official badge, testing URL → "test now" link, nothing → "soon" box plus a mail line.
+ * The App Store badge follows the colour scheme: white in light mode, black in dark mode. Google Play ships one colour.
  */
 import { contact, release, stage, storeHref, type Platform } from '../config';
 import { href, type Locale, t } from '../i18n';
@@ -30,7 +31,14 @@ const gateMailto = `mailto:${contact.email}?subject=${encodeURIComponent(s.andro
           return (
             <li>
               <a class="badge" href={link}>
-                <img src={href(`/badges/${p}-${locale}.svg`)} alt={s.badgeAlt[p]} width="180" height="54" loading="lazy" />
+                {p === 'ios' ? (
+                  <picture>
+                    <source srcset={href(`/badges/ios-${locale}-black.svg`)} media="(prefers-color-scheme: dark)" />
+                    <img src={href(`/badges/ios-${locale}-white.svg`)} alt={s.badgeAlt[p]} width="180" height="54" loading="lazy" />
+                  </picture>
+                ) : (
+                  <img src={href(`/badges/android-${locale}.svg`)} alt={s.badgeAlt[p]} width="180" height="54" loading="lazy" />
+                )}
               </a>
             </li>
           );
@@ -88,6 +96,9 @@ const gateMailto = `mailto:${contact.email}?subject=${encodeURIComponent(s.andro
     gap: 1rem;
   }
   .stores {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
     list-style: none;
     margin: 0;
     padding: 0;

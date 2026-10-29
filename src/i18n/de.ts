@@ -199,7 +199,7 @@ const de = {
   },
   support: {
     title: 'Support',
-    description: 'Fragen, Fehler, Tester werden: so erreichst du Hissi.',
+    description: 'Fragen, Fehler, Download: so erreichst du Hissi.',
     tag: 'Hilfe',
     h1: 'Support',
     issues: {
@@ -212,7 +212,7 @@ const de = {
       h2: 'E-Mail',
       text: 'Oder direkt per Mail. Hissi ist ein Ein-Personen-Projekt, ich antworte, so schnell ich kann.',
     },
-    tester: { h2: 'Tester werden', text: 'Beide Apps sind noch im Test.' },
+    download: { h2: 'Hissi laden', text: 'Hissi gibt es im App Store und bei Google Play.' },
     privacy: {
       h2: 'Datenschutz',
       text: 'Hissi braucht kein Konto und sammelt keine Daten. Favoriten liegen auf deinem Gerät, dein Standort verlässt das Gerät nicht.',
