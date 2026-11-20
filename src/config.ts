@@ -33,6 +33,8 @@ export const contact = {
   github: 'https://github.com/a11yland',
   accessibilityCloud: 'https://transit.accessibility.cloud',
   sozialhelden: 'https://sozialhelden.de',
+  /** Second data source: DB and city operators beyond the VBB (CC BY 4.0). */
+  aufzugsstatus: 'https://aufzuege.ploetzlich-querschnitt.de/api/',
 } as const;
 
 export const imprint = {

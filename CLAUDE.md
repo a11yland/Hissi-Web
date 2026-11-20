@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Overview
 
-Static Astro website for [hissi.app](https://hissi.app), the landing page of the Hissi app (iOS and Android), which shows whether the elevators at stations in Berlin and Brandenburg are working. Audience: wheelchair users, parents with strollers, people with luggage. German (default, no prefix) and English (`/en/`). Pages: landing page (an "elevator ride" of floors), support, privacy policy, legal notice, plus one bilingual 404. No backend, no web fonts, no trackers, no client framework.
+Static Astro website for [hissi.app](https://hissi.app), the landing page of the Hissi app (iOS and Android), which shows whether the elevators at stations in Berlin and Brandenburg (via accessibility.cloud) and at DB and city-operator stations across Germany (via the Aufzugsstatus API, aufzuege.ploetzlich-querschnitt.de) are working. Audience: wheelchair users, parents with strollers, people with luggage. German (default, no prefix) and English (`/en/`). Pages: landing page (an "elevator ride" of floors), support, privacy policy, legal notice, plus one bilingual 404. No backend, no web fonts, no trackers, no client framework.
 
 ## Commands
 

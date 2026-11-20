@@ -32,7 +32,7 @@ The content of this site was created with care. We accept no liability for its a
 
 ## Data source
 
-Elevator data in Hissi comes from [accessibility.cloud](https://transit.accessibility.cloud), a project by [Sozialhelden e.V.](https://sozialhelden.de). Hissi is an independent project and is not affiliated with the transit operators.
+Elevator data in Hissi comes from [accessibility.cloud](https://transit.accessibility.cloud), a project by [Sozialhelden e.V.](https://sozialhelden.de), for Berlin and Brandenburg, and from the [Aufzugsstatus API](https://aufzuege.ploetzlich-querschnitt.de/api/) by plötzlich querschnitt (aggregation under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)) for stations in the rest of Germany. Hissi is an independent project and is not affiliated with the transit operators.
 
 ## Copyright
 

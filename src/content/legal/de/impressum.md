@@ -30,7 +30,7 @@ Die Inhalte dieser Seiten wurden mit Sorgfalt erstellt. Für Richtigkeit, Vollst
 
 ## Datenquelle
 
-Die Aufzugsdaten in Hissi stammen von [accessibility.cloud](https://transit.accessibility.cloud), einem Projekt der [Sozialhelden e.V.](https://sozialhelden.de). Hissi ist ein unabhängiges Projekt und steht in keiner Verbindung zu den Verkehrsbetrieben.
+Die Aufzugsdaten in Hissi stammen für Berlin und Brandenburg von [accessibility.cloud](https://transit.accessibility.cloud), einem Projekt der [Sozialhelden e.V.](https://sozialhelden.de), und für Bahnhöfe im übrigen Deutschland von der [Aufzugsstatus-API](https://aufzuege.ploetzlich-querschnitt.de/api/) von plötzlich querschnitt (Aggregation unter [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)). Hissi ist ein unabhängiges Projekt und steht in keiner Verbindung zu den Verkehrsbetrieben.
 
 ## Urheberrecht
 

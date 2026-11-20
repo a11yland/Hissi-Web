@@ -36,7 +36,7 @@ export interface StoreLabel {
 
 const de = {
   meta: {
-    title: 'Hissi – Aufzugstatus für Berlin und Brandenburg',
+    title: 'Hissi – Aufzugstatus für Berlin, Brandenburg und Bahnhöfe deutschlandweit',
     description:
       'Hissi sagt dir, ob der Aufzug fährt, bevor du an der Haltestelle stehst. Für iPhone, Apple Watch und Android.',
     ogAlt: 'Hissi – Fährt der Aufzug? Wisse es vorher.',
@@ -142,8 +142,10 @@ const de = {
     chipsLabel: 'Was Hissi nicht hat',
     chips: ['kein Konto', 'keine Werbung', 'keine Analyse', 'Standort bleibt auf dem Gerät'],
     note: {
-      lead: 'Die Aufzugsmeldungen kommen von den Verkehrsbetrieben, über ',
+      lead: 'Die Aufzugsmeldungen kommen von den Verkehrsbetrieben, für Berlin und Brandenburg über ',
       link: 'accessibility.cloud',
+      mid: ', für Bahnhöfe im übrigen Deutschland über die ',
+      link2: 'Aufzugsstatus-API',
       tail: '. Wie frisch ein Status ist, liegt beim Betreiber. Hissi zeigt dir deshalb immer, seit wann eine Meldung gilt.',
     },
     // added
@@ -201,12 +203,12 @@ const de = {
     download: { h2: 'Hissi laden', text: 'Hissi gibt es im App Store und bei Google Play.' },
     privacy: {
       h2: 'Datenschutz',
-      text: 'Hissi braucht kein Konto und sammelt keine Daten. Favoriten liegen auf deinem Gerät, dein Standort verlässt das Gerät nicht.',
+      text: 'Hissi braucht kein Konto und sammelt keine Daten. Favoriten liegen auf deinem Gerät. Dein genauer Standort verlässt das Gerät nicht; nur außerhalb von Berlin und Brandenburg fragt die App nahe Stationen mit einer auf etwa einen Kilometer vergröberten Position ab.',
       link: 'Datenschutzerklärung',
     },
     source: {
-      h2: 'Datenquelle',
-      text: 'Die Aufzugsdaten stammen von accessibility.cloud, einem Projekt des gemeinnützigen Sozialhelden e.V. Liefert eine Quelle keinen Status, zeigt Hissi „Status unbekannt“ – niemals ein falsches „in Betrieb“.',
+      h2: 'Datenquellen',
+      text: 'Die Aufzugsdaten für Berlin und Brandenburg stammen von accessibility.cloud, einem Projekt des gemeinnützigen Sozialhelden e.V. Bahnhöfe im übrigen Deutschland liefert die Aufzugsstatus-API von plötzlich querschnitt (DB InfraGO und weitere Betreiber, CC BY 4.0). Liefert eine Quelle keinen Status, zeigt Hissi „Status unbekannt“ – niemals ein falsches „in Betrieb“.',
     },
   },
   legal: {

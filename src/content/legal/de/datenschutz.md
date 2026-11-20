@@ -1,10 +1,10 @@
 ---
 title: Datenschutzerklärung
 description: Was Hissi verarbeitet und was nicht. Kein Konto, keine Werbung, keine Analyse.
-tagline: Hissi — Aufzugstatus für Berlin und Brandenburg
+tagline: Hissi — Aufzugstatus für Berlin, Brandenburg und Bahnhöfe deutschlandweit
 locale: de
 pageKey: privacy
-updated: 2026-10-03
+updated: 2026-11-20
 ---
 
 ## Kurzfassung
@@ -23,9 +23,11 @@ E-Mail: Kobe24LAL@gmx.de
 
 **Favoriten.** Die Aufzüge, die du markierst, speichert die App auf deinem Gerät. Wenn du bei iCloud angemeldet bist, legt die App dieselbe Liste zusätzlich in deinem iCloud-Schlüssel-Wert-Speicher ab, damit sie auf deinen anderen Geräten erscheint und eine Neuinstallation übersteht. Dieser Speicher gehört zu deinem Apple-Account; wir haben keinen Zugriff darauf. Es gilt die [Datenschutzerklärung von Apple](https://www.apple.com/legal/privacy/).
 
-**Standort.** Nur wenn du „Stationen in der Nähe anzeigen“ antippst oder die Karte dich darum bittet, fragt die App deinen Standort ab. Er wird ausschließlich auf dem Gerät verwendet, um nahe Stationen zu sortieren und deine Position auf der Karte zu zeigen. Er wird weder gespeichert noch übertragen. Das Widget „In der Nähe“ nutzt dieselbe Freigabe über das System.
+**Standort.** Nur wenn du „Stationen in der Nähe anzeigen“ antippst oder die Karte dich darum bittet, fragt die App deinen Standort ab. Er wird auf dem Gerät verwendet, um nahe Stationen zu sortieren und deine Position auf der Karte zu zeigen, und nicht gespeichert. Liegt in Berlin und Brandenburg keine Station in Fußweite, fragt die App den Aufzugsstatus-Dienst (unten) nach Stationen in deiner Nähe. Dabei überträgt sie eine auf etwa einen Kilometer vergröberte Position, nie deinen genauen Standort. Das Widget „In der Nähe“ nutzt dieselbe Freigabe über das System und verhält sich gleich.
 
-**Aufzugsdaten.** Die Statusdaten bezieht die App von transit.accessibility.cloud, einem Dienst des Sozialhelden e.V. Bei jeder Aktualisierung sendet die App die Kennungen deiner Favoriten an diesen Dienst, damit er deren Status liefern kann, dazu technisch bedingt deine IP-Adresse und die App-Sprache. Die Suche nach Stationen läuft lokal über einen Katalog, den die App vorab lädt; Suchbegriffe werden nicht übertragen. Für den Dienst gilt die [Datenschutzerklärung der Sozialhelden](https://www.sozialhelden.de/datenschutz).
+**Aufzugsdaten.** Die Statusdaten für Berlin und Brandenburg bezieht die App von transit.accessibility.cloud, einem Dienst des Sozialhelden e.V. Bei jeder Aktualisierung sendet die App die Kennungen deiner Favoriten an diesen Dienst, damit er deren Status liefern kann, dazu technisch bedingt deine IP-Adresse und die App-Sprache. Die Suche nach Stationen in Berlin und Brandenburg läuft lokal über einen Katalog, den die App vorab lädt. Für den Dienst gilt die [Datenschutzerklärung der Sozialhelden](https://www.sozialhelden.de/datenschutz).
+
+**Aufzugsdaten außerhalb von Berlin und Brandenburg.** Bahnhöfe im übrigen Deutschland liefert die [Aufzugsstatus-API](https://aufzuege.ploetzlich-querschnitt.de/api/) von plötzlich querschnitt (Betreiber: André M. Bajorat). An diesen Dienst sendet die App deine Suchbegriffe ab drei Zeichen, die Kennungen deiner Favoriten außerhalb von Berlin und Brandenburg bei jeder Aktualisierung sowie die vergröberte Position für „In der Nähe“ (siehe Standort), dazu technisch bedingt deine IP-Adresse und den Namen und die Version der App. Der Dienst kommt ohne Konto und ohne Tracking aus.
 
 **Karten.** Kartenausschnitt und Umsehen-Ansicht kommen von Apple Karten. Dabei werden die Stationskoordinaten an Apple übertragen; es gilt die Datenschutzerklärung von Apple.
 

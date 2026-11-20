@@ -3,7 +3,7 @@ import type { Strings } from './de';
 
 const en: Strings = {
   meta: {
-    title: 'Hissi – Elevator status for Berlin and Brandenburg',
+    title: 'Hissi – Elevator status for Berlin, Brandenburg and stations across Germany',
     description:
       'Hissi tells you whether the elevator is running before you are standing at the station. For iPhone, Apple Watch and Android.',
     ogAlt: 'Hissi – Is the elevator running? Know beforehand.',
@@ -102,8 +102,10 @@ const en: Strings = {
     chipsLabel: 'What Hissi does not have',
     chips: ['no account', 'no ads', 'no analytics', 'location stays on the device'],
     note: {
-      lead: 'The elevator reports come from the transit operators, via ',
+      lead: 'The elevator reports come from the transit operators, for Berlin and Brandenburg via ',
       link: 'accessibility.cloud',
+      mid: ', for stations in the rest of Germany via the ',
+      link2: 'Aufzugsstatus API',
       tail: '. How fresh a status is depends on the operator, which is why Hissi always shows you since when a report applies.',
     },
     maps: 'Maps come from Apple Maps, on Android from the Google Maps SDK – the request carries the station’s coordinates, not yours.',
@@ -158,12 +160,12 @@ const en: Strings = {
     download: { h2: 'Get Hissi', text: 'Hissi is available on the App Store and Google Play.' },
     privacy: {
       h2: 'Privacy',
-      text: 'Hissi needs no account and collects no data. Favorites stay on your device; your location never leaves the device.',
+      text: 'Hissi needs no account and collects no data. Favorites stay on your device. Your exact location never leaves the device; only outside Berlin and Brandenburg does the app look up nearby stations with a position rounded to about one kilometre.',
       link: 'Privacy policy',
     },
     source: {
-      h2: 'Data source',
-      text: 'Elevator data comes from accessibility.cloud, a project by the non-profit Sozialhelden e.V. If a source delivers no status, Hissi shows “Status unknown” – never a false “in service”.',
+      h2: 'Data sources',
+      text: 'Elevator data for Berlin and Brandenburg comes from accessibility.cloud, a project by the non-profit Sozialhelden e.V. Stations in the rest of Germany come from the Aufzugsstatus API by plötzlich querschnitt (DB InfraGO and other operators, CC BY 4.0). If a source delivers no status, Hissi shows “Status unknown” – never a false “in service”.',
     },
   },
   legal: {

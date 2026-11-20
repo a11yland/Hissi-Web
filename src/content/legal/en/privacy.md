@@ -1,10 +1,10 @@
 ---
 title: Privacy Policy
 description: What Hissi processes and what it does not. No account, no ads, no analytics.
-tagline: Hissi — elevator status for Berlin and Brandenburg
+tagline: Hissi — elevator status for Berlin, Brandenburg and stations across Germany
 locale: en
 pageKey: privacy
-updated: 2026-10-03
+updated: 2026-11-20
 ---
 
 ## In short
@@ -23,9 +23,11 @@ E-mail: Kobe24LAL@gmx.de
 
 **Favorites.** The elevators you star are stored on your device. If you are signed in to iCloud, the app also keeps the same list in your iCloud key-value store so it appears on your other devices and survives a reinstall. That store belongs to your Apple account; we have no access to it. [Apple's privacy policy](https://www.apple.com/legal/privacy/) applies.
 
-**Location.** Only when you tap "show nearby stations" or ask the map for your position does the app request your location. It is used on the device alone, to sort nearby stations and to show you on the map, and is neither stored nor transmitted. The "Nearby" widget uses the same permission through the system.
+**Location.** Only when you tap "show nearby stations" or ask the map for your position does the app request your location. It is used on the device to sort nearby stations and to show you on the map, and is not stored. If no station in Berlin or Brandenburg is within walking distance, the app asks the Aufzugsstatus service (below) for stations near you. For that it transmits a position rounded to about one kilometre, never your exact location. The "Nearby" widget uses the same permission through the system and behaves the same way.
 
-**Elevator data.** Status data comes from transit.accessibility.cloud, a service run by Sozialhelden e.V. On every refresh the app sends the identifiers of your favorites to that service so it can return their status, along with your IP address and the app language as a technical consequence. Station search runs locally against a catalog the app downloads in advance; search terms are not transmitted. The [Sozialhelden privacy policy](https://www.sozialhelden.de/datenschutz) governs that service.
+**Elevator data.** Status data for Berlin and Brandenburg comes from transit.accessibility.cloud, a service run by Sozialhelden e.V. On every refresh the app sends the identifiers of your favorites to that service so it can return their status, along with your IP address and the app language as a technical consequence. Station search for Berlin and Brandenburg runs locally against a catalog the app downloads in advance. The [Sozialhelden privacy policy](https://www.sozialhelden.de/datenschutz) governs that service.
+
+**Elevator data outside Berlin and Brandenburg.** Stations in the rest of Germany come from the [Aufzugsstatus API](https://aufzuege.ploetzlich-querschnitt.de/api/) by plötzlich querschnitt (operator: André M. Bajorat). The app sends that service your search terms from three characters on, the identifiers of your favorites outside Berlin and Brandenburg on every refresh, and the rounded position for “Nearby” (see Location), along with your IP address and the app’s name and version as a technical consequence. The service needs no account and does no tracking.
 
 **Maps.** Map snippets and Look Around come from Apple Maps, which receives the station coordinates; Apple's privacy policy applies.
 
