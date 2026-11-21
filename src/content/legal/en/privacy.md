@@ -1,7 +1,7 @@
 ---
 title: Privacy Policy
 description: What Hissi processes and what it does not. No account, no ads, no analytics.
-tagline: Hissi — elevator status for Berlin and Brandenburg
+tagline: Hissi — elevator status for Berlin, Brandenburg and Deutsche Bahn stations
 locale: en
 pageKey: privacy
 updated: 2026-10-03

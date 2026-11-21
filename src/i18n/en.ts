@@ -3,7 +3,7 @@ import type { Strings } from './de';
 
 const en: Strings = {
   meta: {
-    title: 'Hissi – Elevator status for Berlin and Brandenburg',
+    title: 'Hissi – Elevator status for Berlin, Brandenburg and Deutsche Bahn stations',
     description:
       'Hissi tells you whether the elevator is running before you are standing at the station. For iPhone, Apple Watch and Android.',
     ogAlt: 'Hissi – Is the elevator running? Know beforehand.',
@@ -163,7 +163,7 @@ const en: Strings = {
     },
     source: {
       h2: 'Data source',
-      text: 'Elevator data comes from accessibility.cloud, a project by the non-profit Sozialhelden e.V. If a source delivers no status, Hissi shows “Status unknown” – never a false “in service”.',
+      text: 'Elevator data comes from accessibility.cloud, a project by the non-profit Sozialhelden e.V. Station names and locations come from DELFI e.V. via gtfs.de and from VBB Verkehrsverbund Berlin-Brandenburg GmbH, both under a CC BY license. If a source delivers no status, Hissi shows “Status unknown” – never a false “in service”.',
     },
   },
   legal: {

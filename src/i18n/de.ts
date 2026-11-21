@@ -36,7 +36,7 @@ export interface StoreLabel {
 
 const de = {
   meta: {
-    title: 'Hissi – Aufzugstatus für Berlin und Brandenburg',
+    title: 'Hissi – Aufzugstatus für Berlin, Brandenburg und Bahnhöfe der Deutschen Bahn',
     description:
       'Hissi sagt dir, ob der Aufzug fährt, bevor du an der Haltestelle stehst. Für iPhone, Apple Watch und Android.',
     ogAlt: 'Hissi – Fährt der Aufzug? Wisse es vorher.',
@@ -206,7 +206,7 @@ const de = {
     },
     source: {
       h2: 'Datenquelle',
-      text: 'Die Aufzugsdaten stammen von accessibility.cloud, einem Projekt des gemeinnützigen Sozialhelden e.V. Liefert eine Quelle keinen Status, zeigt Hissi „Status unbekannt“ – niemals ein falsches „in Betrieb“.',
+      text: 'Die Aufzugsdaten stammen von accessibility.cloud, einem Projekt des gemeinnützigen Sozialhelden e.V. Die Namen und Orte der Stationen kommen von DELFI e.V. über gtfs.de und von der VBB Verkehrsverbund Berlin-Brandenburg GmbH, beide unter der Lizenz CC BY. Liefert eine Quelle keinen Status, zeigt Hissi „Status unbekannt“ – niemals ein falsches „in Betrieb“.',
     },
   },
   legal: {
