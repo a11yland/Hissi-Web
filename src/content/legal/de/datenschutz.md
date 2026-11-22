@@ -1,7 +1,7 @@
 ---
 title: Datenschutzerklärung
 description: Was Hissi verarbeitet und was nicht. Kein Konto, keine Werbung, keine Analyse.
-tagline: Hissi — Aufzugstatus für Berlin und Brandenburg
+tagline: Hissi — Aufzugstatus für Berlin, Brandenburg und Bahnhöfe der Deutschen Bahn
 locale: de
 pageKey: privacy
 updated: 2026-10-03
