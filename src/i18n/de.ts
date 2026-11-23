@@ -181,7 +181,18 @@ const de = {
       mail: { text: 'Du willst vorab testen? ', link: 'Schreib mir eine Mail', subject: 'Hissi testen' },
     },
     copyright: '© 2026 a11yland. Gebaut für alle, die nicht die Treppe nehmen können.',
-    links: { support: 'Support', privacy: 'Datenschutz', legal: 'Impressum', github: 'GitHub' },
+    links: { news: 'News', support: 'Support', privacy: 'Datenschutz', legal: 'Impressum', github: 'GitHub' },
+  },
+  // added
+  news: {
+    title: 'News',
+    description: 'Was ist neu in Hissi für iOS und Android: alle Versionen im Überblick.',
+    tag: 'Aushang',
+    h1: 'Was ist neu',
+    intro: 'Alle Versionen von Hissi für iOS und Android, die neueste zuerst.',
+    versionsLabel: 'Versionen',
+    /** Label of the teaser on the landing page. */
+    teaserLabel: 'Neu',
   },
   support: {
     title: 'Support',

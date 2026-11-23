@@ -21,10 +21,11 @@ const LIMIT = 9;
 /** Proper names and titles, removed before measuring (WCAG 3.1.5). */
 const NAMES = [
   'Hissi-Web', 'Hissi', 'Berlin', 'Brandenburg', 'Alexanderplatz', 'Hauptbahnhof', 'Ostkreuz', 'Warschauer Straße', 'Ringbahn',
-  'Apple Watch', 'Apple Karten', 'Apple Maps', 'Apple', 'iPhone', 'iOS', 'iCloud', 'Siri', 'TestFlight', 'App Store',
+  'iPhone Duo', 'Apple Watch', 'Apple Karten', 'Apple Maps', 'Apple', 'iPhone', 'iOS', 'iCloud', 'Siri', 'TestFlight', 'App Store',
   'Android', 'Google Play', 'Google Maps SDK', 'Google', 'GitHub', 'accessibility.cloud', 'transit.accessibility.cloud',
   'Sozialhelden e.V.', 'Sozialhelden', 'bunny.net', 'BunnyWay d.o.o.', 'Slowenien', 'Slovenia', 'a11yland', 'Ingo Stöcker',
   'Blankenburger Straße', 'Deutschland', 'Germany', 'Kobe24LAL@gmx.de', 'U2', 'ISO', 'EN',
+  'Deutschen Bahn', 'Deutsche Bahn', 'iPad', 'Mac', 'TalkBack', 'U Klosterstraße',
 ];
 
 const decode = (s) =>

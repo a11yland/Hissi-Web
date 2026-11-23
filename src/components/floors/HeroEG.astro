@@ -1,6 +1,7 @@
 ---
 import Floor from '../Floor.astro';
 import Lift from '../Lift.astro';
+import NewsTeaser from '../NewsTeaser.astro';
 import { type Locale, t } from '../../i18n';
 
 interface Props {
@@ -21,6 +22,7 @@ const s = t(locale).eg;
     <ul class="chips" aria-label={s.chipsLabel}>
       {s.chips.map((chip) => <li class="chip">{chip}</li>)}
     </ul>
+    <NewsTeaser locale={locale} />
   </div>
   <Lift locale={locale} />
 </Floor>

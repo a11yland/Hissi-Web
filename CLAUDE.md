@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Overview
 
-Static Astro website for [hissi.app](https://hissi.app), the landing page of the Hissi app (iOS and Android), which shows whether the elevators at stations in Berlin and Brandenburg and at Deutsche Bahn stations across Germany are working. Audience: wheelchair users, parents with strollers, people with luggage. German (default, no prefix) and English (`/en/`). Pages: landing page (an "elevator ride" of floors), support, privacy policy, legal notice, plus one bilingual 404. No backend, no web fonts, no trackers, no client framework.
+Static Astro website for [hissi.app](https://hissi.app), the landing page of the Hissi app (iOS and Android), which shows whether the elevators at stations in Berlin and Brandenburg and at Deutsche Bahn stations across Germany are working. Audience: wheelchair users, parents with strollers, people with luggage. German (default, no prefix) and English (`/en/`). Pages: landing page (an "elevator ride" of floors), news (changelog of both apps), support, privacy policy, legal notice, plus one bilingual 404. No backend, no web fonts, no trackers, no client framework.
 
 ## Commands
 
@@ -24,10 +24,11 @@ npm run deploy     # scripts/deploy-bunny.mjs, needs BUNNY_* env vars (normally 
 
 ## Architecture
 
-- `src/pages/` - one file per page and locale (`index`, `support`, `datenschutz`, `impressum` and `en/index`, `en/support`, `en/privacy`, `en/legal-notice`), plus `404.astro` (bilingual, because the CDN serves a single 404) and `robots.txt.ts`.
+- `src/pages/` - one file per page and locale (`index`, `news`, `support`, `datenschutz`, `impressum` and `en/index`, `en/news`, `en/support`, `en/privacy`, `en/legal-notice`), plus `404.astro` (bilingual, because the CDN serves a single 404) and `robots.txt.ts`.
 - `src/i18n/` - `routes.ts` is the route table (`PageKey` to translated slug per locale); it feeds links, the language switch, hreflang, canonical URLs and the sitemap (`astro.config.ts`). `de.ts` holds all German strings and is the source; `en.ts` is typed as `typeof de`, so a missing key fails `astro check`. `index.ts` exports `t(locale)` and `href(path)`.
 - `src/layouts/` - `Base.astro` (html `lang`, skip link, header, `main#inhalt`, footer "Roof"), `Legal.astro` (renders a Markdown entry).
 - `src/content/legal/{de,en}/` - privacy policy and legal notice as Markdown (schema in `src/content.config.ts`). The privacy policy here is canonical for the apps too.
+- `src/content/news/{de,en}/` - changelog of both apps: one Markdown file per release and language, same file name in both (`releases` lists platform and version). `src/news.ts` sorts them newest first; `News.astro` renders the page, `NewsTeaser.astro` the latest entry in the hero. A release is one new file per language.
 - `src/components/` - `floors/` holds one component per landing-page section (`HeroEG`, `Forms`, `Everywhere`, `Privacy`, `Finnish`), wrapped by `Floor.astro`. `Lift.astro` is the hero elevator with its inline script (ride, Web Audio chime, live-region announcement). `FloorDisplay` (decorative header indicator), `LangSwitch`, `StoreButtons`, `Screens` (app screenshots via `astro:assets`), `Shape` + `StatusSprite` (status symbols), `brand/Lockup` (inline SVG logo).
 - `src/styles/` - `tokens.css` (colour tokens, light and dark palettes, type scale), `base.css`, `site.css` (component styles, global on purpose because selectors cross components, includes reduced-motion and forced-colors blocks), `prose.css` (legal pages). Imported once in `Base.astro`.
 - `src/config.ts` - release toggles (store URLs, App Store id for the Smart App Banner) and contact data. `StoreButtons` derives badge vs. "soon" state from it.

@@ -1,0 +1,74 @@
+---
+/** The latest changelog entry as a notice in the hero; the whole card links to it on the news page. */
+import NewsMeta from './NewsMeta.astro';
+import { href, paths, type Locale, t } from '../i18n';
+import { anchorOf, newsFor } from '../news';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const s = t(locale).news;
+const [latest] = await newsFor(locale);
+---
+
+{
+  latest && (
+    <aside class="teaser" aria-label={s.teaserLabel}>
+      <h2>
+        <span class="new">{s.teaserLabel}</span>{' '}
+        <a href={`${href(paths.news[locale])}#${anchorOf(latest)}`}>{latest.data.title}</a>
+      </h2>
+      <p>{latest.data.summary}</p>
+      <NewsMeta locale={locale} entry={latest} />
+    </aside>
+  )
+}
+
+<style>
+  .teaser {
+    position: relative;
+    display: grid;
+    gap: 0.5rem;
+    max-width: 36rem;
+    padding: 1rem 1.25rem;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-left: 0.4rem solid var(--accent);
+    border-radius: 0.75rem;
+  }
+  .teaser:hover {
+    border-color: var(--accent);
+  }
+  h2 {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.25rem 0.6rem;
+    font-size: var(--step-1);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+  }
+  .new {
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  /* The link covers the card, so the whole notice is one target. */
+  a::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+  }
+  a:focus-visible {
+    outline: none;
+  }
+  a:focus-visible::after {
+    outline: 3px solid var(--focus);
+    outline-offset: 3px;
+  }
+</style>

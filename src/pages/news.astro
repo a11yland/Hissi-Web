@@ -1,0 +1,9 @@
+---
+import News from '../components/News.astro';
+import Base from '../layouts/Base.astro';
+import { de } from '../i18n';
+---
+
+<Base pageKey="news" title={`${de.news.title} – Hissi`} description={de.news.description}>
+  <News locale="de" />
+</Base>

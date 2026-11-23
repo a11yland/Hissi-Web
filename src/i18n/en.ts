@@ -138,7 +138,16 @@ const en: Strings = {
       mail: { text: 'Want to test before release? ', link: 'Send me an e-mail', subject: 'Testing Hissi' },
     },
     copyright: '© 2026 a11yland. Built for everyone who cannot take the stairs.',
-    links: { support: 'Support', privacy: 'Privacy', legal: 'Legal notice', github: 'GitHub' },
+    links: { news: 'News', support: 'Support', privacy: 'Privacy', legal: 'Legal notice', github: 'GitHub' },
+  },
+  news: {
+    title: 'News',
+    description: 'What is new in Hissi for iOS and Android: every version at a glance.',
+    tag: 'Notice board',
+    h1: 'What’s new',
+    intro: 'Every version of Hissi for iOS and Android, newest first.',
+    versionsLabel: 'Versions',
+    teaserLabel: 'New',
   },
   support: {
     title: 'Support',

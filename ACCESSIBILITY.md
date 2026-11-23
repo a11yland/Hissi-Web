@@ -46,7 +46,7 @@ Open items left over from the first audit (closed issue [#1](https://github.com/
 
 Other known gaps:
 
-- **Audit predates later changes.** The header was regrouped and the store badges and support page changed on 29 October 2026, after the audit. The automated checks have not been re-run since.
+- **Audit predates later changes.** The header was regrouped and the store badges and support page changed on 29 October 2026, after the audit. The automated checks were re-run on 23 November 2026 over the landing and news pages only (both languages, light and dark, 1280 and 320 CSS pixels: no violations); support, legal and 404 pages have not been re-run since.
 - **No automated accessibility checks in CI.** Regressions are only caught by hand.
 - **Focus may be hidden behind the sticky header on narrow screens (unverified).** `scroll-padding-top` is a fixed 4.5 rem (`src/styles/base.css`), but the header row is allowed to wrap (`flex-wrap` in `src/styles/site.css`) and is then taller. A focused element scrolled into view could end up under it (2.4.11 AA, 2.4.12 AAA). Needs a check at 320 CSS pixels.
 - **No accessibility statement on the site.** hissi.app has no page that states the conformance target, known barriers and a feedback route for visitors.

@@ -1,0 +1,50 @@
+---
+/** Date and app versions of a changelog entry. Text labels, not icons or colour. */
+import { type Locale, t } from '../i18n';
+import { formatDate, isoDate, type NewsEntry } from '../news';
+
+interface Props {
+  locale: Locale;
+  entry: NewsEntry;
+}
+
+const { locale, entry } = Astro.props;
+const s = t(locale);
+const { date, releases } = entry.data;
+---
+
+<div class="meta">
+  <time datetime={isoDate(date)}>{formatDate(date, locale)}</time>
+  <ul aria-label={s.news.versionsLabel}>
+    {releases.map((r) => <li>{s.platforms[r.platform]} {r.version}</li>)}
+  </ul>
+</div>
+
+<style>
+  .meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4rem 0.75rem;
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    color: var(--muted);
+  }
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  li {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.15rem 0.5rem;
+    border: 1.5px solid currentColor;
+    border-radius: 0.4rem;
+  }
+</style>

@@ -5,11 +5,12 @@ export const locales = ['de', 'en'] as const;
 export type Locale = (typeof locales)[number];
 export const defaultLocale: Locale = 'de';
 
-export type PageKey = 'home' | 'support' | 'privacy' | 'legal';
+export type PageKey = 'home' | 'news' | 'support' | 'privacy' | 'legal';
 
 /** Slugs are translated, so Astro's locale helpers (which assume a shared slug) are not used. */
 export const paths: Record<PageKey, Record<Locale, string>> = {
   home: { de: '/', en: '/en/' },
+  news: { de: '/news/', en: '/en/news/' },
   support: { de: '/support/', en: '/en/support/' },
   privacy: { de: '/datenschutz/', en: '/en/privacy/' },
   legal: { de: '/impressum/', en: '/en/legal-notice/' },

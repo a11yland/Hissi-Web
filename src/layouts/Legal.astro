@@ -21,6 +21,7 @@ const updatedText = new Intl.DateTimeFormat(locale, { dateStyle: 'long' }).forma
 const siblings = (['support', 'privacy', 'legal'] as PageKey[]).filter((key) => key !== pageKey);
 const linkText: Record<PageKey, string> = {
   home: s.legal.home,
+  news: s.roof.links.news,
   support: s.roof.links.support,
   privacy: s.roof.links.privacy,
   legal: s.roof.links.legal,

@@ -16,4 +16,18 @@ const legal = defineCollection({
   }),
 });
 
-export const collections = { legal };
+/** Changelog of the apps: one entry per release and language; the file name pairs the two languages. */
+const news = defineCollection({
+  loader: glob({ base: './src/content/news', pattern: '**/*.md' }),
+  schema: z.object({
+    title: z.string(),
+    /** One sentence for the teaser on the landing page. */
+    summary: z.string(),
+    locale: z.enum(['de', 'en']),
+    date: z.coerce.date(),
+    /** App versions this entry describes. */
+    releases: z.array(z.object({ platform: z.enum(['ios', 'android']), version: z.coerce.string() })).min(1),
+  }),
+});
+
+export const collections = { legal, news };

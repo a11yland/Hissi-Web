@@ -20,7 +20,8 @@ Node ≥ 22.12 (`.nvmrc`). No linter; `astro check` is the gate. `node scripts/r
 - `src/styles/` — `tokens.css` is the template's token block (system font stacks instead of the web fonts; the light-mode unknown mark was darkened from `#D97706` to `#8A4B08`, 2.9:1 → 6.2:1 on cream), `base.css` / `site.css` the rest of the template CSS, kept global because rules cross component boundaries.
 - `src/components/` — one component per floor (`floors/`), the hero's `Lift` with its script (door starts open, so the page works without JS), the header's `FloorDisplay`, `Lockup` (inline SVG, `currentColor` + `var(--ping)`), `StoreButtons`, `Screens`.
 - `src/content/legal/` — privacy policy and legal notice as Markdown per language (`src/content.config.ts`). The privacy policy here is the canonical one; the app repos should link to it.
-- `src/pages/` — eight pages, explicit per locale, plus one bilingual `404.astro` (the CDN serves a single 404 page).
+- `src/content/news/` — changelog of both apps: one Markdown file per release and language, same file name in `de/` and `en/` (`releases` lists platform + version). Rendered newest first at `/news/` ↔ `/en/news/`; the latest entry is teased in the hero (`NewsTeaser`). A release is one new file per language.
+- `src/pages/` — ten pages, explicit per locale, plus one bilingual `404.astro` (the CDN serves a single 404 page).
 
 Typography uses system font stacks (the template's fallback stacks); no web fonts are loaded.
 

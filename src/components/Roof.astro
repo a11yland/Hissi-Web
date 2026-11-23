@@ -29,6 +29,7 @@ const s = t(locale);
       </div>
       <nav aria-label={s.nav.legalNav}>
         <ul>
+          <li><a href={href(paths.news[locale])} aria-current={pageKey === 'news' ? 'page' : undefined}>{s.roof.links.news}</a></li>
           <li><a href={href(paths.support[locale])} aria-current={pageKey === 'support' ? 'page' : undefined}>{s.roof.links.support}</a></li>
           <li><a href={href(paths.privacy[locale])} aria-current={pageKey === 'privacy' ? 'page' : undefined}>{s.roof.links.privacy}</a></li>
           <li><a href={href(paths.legal[locale])} aria-current={pageKey === 'legal' ? 'page' : undefined}>{s.roof.links.legal}</a></li>
