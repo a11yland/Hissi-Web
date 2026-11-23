@@ -39,7 +39,7 @@ const de = {
     title: 'Hissi – Aufzugstatus für Berlin, Brandenburg und Bahnhöfe der Deutschen Bahn',
     description:
       'Hissi sagt dir, ob der Aufzug fährt, bevor du an der Haltestelle stehst. Für iPhone, Apple Watch und Android.',
-    ogAlt: 'Hissi – Fährt der Aufzug? Wisse es vorher.',
+    ogAlt: 'Hissi – Stufenlos ankommen. Aufzüge an Bahnhöfen, live im Blick.',
   },
   nav: {
     skip: 'Zum Inhalt springen',

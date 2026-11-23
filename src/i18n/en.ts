@@ -6,7 +6,7 @@ const en: Strings = {
     title: 'Hissi – Elevator status for Berlin, Brandenburg and Deutsche Bahn stations',
     description:
       'Hissi tells you whether the elevator is running before you are standing at the station. For iPhone, Apple Watch and Android.',
-    ogAlt: 'Hissi – Is the elevator running? Know beforehand.',
+    ogAlt: 'Hissi – Arrive step-free. Station elevators, live at a glance.',
   },
   nav: {
     skip: 'Skip to content',

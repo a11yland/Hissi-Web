@@ -18,7 +18,7 @@ npm run build      # -> dist/
 npm run preview    # http://localhost:4321
 node scripts/readability.mjs   # after build: reading level per page (WCAG 3.1.5), bar is grade 9
 npm run assets     # scripts/import-assets.sh: copy brand SVGs and screenshots from sibling repos
-node scripts/make-og.mjs       # regenerate public/og.png and apple-touch-icon.png
+node scripts/make-og.mjs       # regenerate public/og-<locale>.png and apple-touch-icon.png
 npm run deploy     # scripts/deploy-bunny.mjs, needs BUNNY_* env vars (normally CI only)
 ```
 

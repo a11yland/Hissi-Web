@@ -31,7 +31,7 @@ Brand SVGs and screenshots are snapshots copied from the sibling repos:
 
 ```bash
 npm run assets             # scripts/import-assets.sh — IOS_REPO, ANDROID_REPO, ART_REPO overridable
-node scripts/make-og.mjs   # public/og.png (1200×630) and apple-touch-icon.png
+node scripts/make-og.mjs   # public/og-<locale>.png (1200×630, from src/assets/brand/feature-graphic-<locale>.png) and apple-touch-icon.png
 ```
 
 Re-run when a motif changes. `strip-c2pa.mjs` removes the C2PA metadata block from the SVGs.

@@ -14,7 +14,7 @@ interface Props {
 const { locale, pageKey, title, description, noindex = false } = Astro.props;
 const s = t(locale);
 const canonical = pageKey ? abs(pageKey, locale) : undefined;
-const ogImage = new URL(href('/og.png'), Astro.site).href;
+const ogImage = new URL(href(`/og-${locale}.png`), Astro.site).href;
 const ogLocale = locale === 'de' ? 'de_DE' : 'en_GB';
 ---
 
